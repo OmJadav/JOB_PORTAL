@@ -1,0 +1,1 @@
+error middleware= to handle errors more accurately and its make application more scalable
