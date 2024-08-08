@@ -5,8 +5,9 @@ import cookieParser from 'cookie-parser';
 import cloudinary from 'cloudinary'
 import { dbConnection } from './db/dbConnection.js';
 import { errorMiddleware } from './middlewares/errorMiddleware.js';
-import userRouter from './routes/userRoutes.js'
 import fileUpload from 'express-fileupload';
+import userRouter from './routes/userRoutes.js'
+import jobRouter from './routes/jobRoutes.js'
 
 dotenv.config();
 const app = express();
@@ -34,6 +35,7 @@ app.use(fileUpload({
 
 
 app.use('/api/users', userRouter)
+app.use('/api/jobs', jobRouter)
 
 app.listen(port, () => {
     console.log(`Server is Running on port ${port}`);

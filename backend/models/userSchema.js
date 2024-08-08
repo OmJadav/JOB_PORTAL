@@ -5,12 +5,12 @@ import jwt from "jsonwebtoken";
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true, trim: true,
     },
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: true, lowercase: true,
         trim: true, match: [/\b\w+@[\w.-]+\.\w{2,4}\b/gi, 'invalid email'],
     },
     password: {
@@ -28,7 +28,8 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true,
-        enum: ['job seeker', 'employer']
+        enum: ['job seeker', 'employer'],
+        default: 'job seeker',
     },
     niches: {
         firstNiche: String,
@@ -40,7 +41,7 @@ const userSchema = new mongoose.Schema({
         public_id: String,
         url: String
     },
-    coverLetter: { type: String }
+    coverLetter: { type: String, trim: true }
 },
     { timestamps: true }
 );
