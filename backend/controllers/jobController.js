@@ -23,14 +23,70 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
 
 
 export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
-
+    const { location, niche, searchKeyword } = req.query;
+    const query = {};
+    if (location) {
+        query.location = location;
+    }
+    if (niche) {
+        query.jobNiche = niche;
+    }
+    if (searchKeyword) {
+        query.$or = [
+            { title: { $regex: searchKeyword, $options: 'i' } },
+            { companyName: { $regex: searchKeyword, $options: 'i' } },
+            { jobDescription: { $regex: searchKeyword, $options: 'i' } },
+        ];
+    }
+    const jobs = await Job.find(query);
+    res.status(201).json({
+        success: true,
+        jobs,
+        jobsCount: jobs.length,
+    })
 })
-export const myPostedJobs = catchAsyncErrors(async (req, res, next) => {
 
+
+export const myPostedJobs = catchAsyncErrors(async (req, res, next) => {
+    const myJobs = await Job.find({ postedBy: req.user._id });
+    if (!myJobs || myJobs.length < 1) {
+        return next(new ErrorHandler("You have not posted jobs!", 400))
+    }
+    res.status(201).json({
+        success: true,
+        myJobs,
+        message: "Success",
+        jobsCount: myJobs.length,
+    })
 })
 export const deleteJob = catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params;
+    // console.log(id);
 
+    const job = await Job.findById(id);
+    if (!job) {
+        return next(new ErrorHandler("Job doesn't exist!", 400))
+    }
+
+    await Job.deleteOne({ _id: id })
+    res.status(201).json({
+        success: true,
+        job,
+        message: "Job Deleted"
+    })
 })
-export const getSingleJob = catchAsyncErrors(async (req, res, next) => {
 
+export const getSingleJob = catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params;
+    // console.log(id);
+
+    const job = await Job.findById(id);
+    if (!job) {
+        return next(new ErrorHandler("Job doesn't exist!", 400))
+    }
+    res.status(201).json({
+        success: true,
+        job,
+        message: "Job fetched"
+    })
 })

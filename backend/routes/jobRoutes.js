@@ -5,9 +5,9 @@ const router = express.Router();
 
 
 router.post('/post-job', authMiddleware, roleCheck('employer'), postJob)
-router.post('/getalljobs', getAllJobs)
-router.post('/mypostedjob', authMiddleware, roleCheck('employer'), myPostedJobs)
-router.delete('/deletejob/:id', authMiddleware, roleCheck('employer'), deleteJob)
+router.get('/getalljobs', getAllJobs)
+router.get('/mypostedjob', authMiddleware, roleCheck('employer'), myPostedJobs)
+router.delete('/delete-job/:id', authMiddleware, roleCheck('employer'), deleteJob)
 router.get('/singlejob/:id', authMiddleware, getSingleJob)
 
 

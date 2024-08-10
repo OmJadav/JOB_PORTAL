@@ -45,7 +45,7 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    hiringMultipleCandidate: {
+    hiringMultipleCandidates: {
         type: String,
         default: "No",
         enum: ["Yes", "No"],
