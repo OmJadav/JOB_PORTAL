@@ -76,6 +76,7 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
         .json({
             success: true,
             message: "User Logged Out!",
+            user: req.user.email,
         });
 });
 
