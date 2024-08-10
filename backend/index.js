@@ -8,6 +8,7 @@ import { errorMiddleware } from './middlewares/errorMiddleware.js';
 import fileUpload from 'express-fileupload';
 import userRouter from './routes/userRoutes.js'
 import jobRouter from './routes/jobRoutes.js'
+import ApplicationRouter from './routes/applicationRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -36,6 +37,7 @@ app.use(fileUpload({
 
 app.use('/api/users', userRouter)
 app.use('/api/jobs', jobRouter)
+app.use('/api/applications', ApplicationRouter)
 
 app.listen(port, () => {
     console.log(`Server is Running on port ${port}`);

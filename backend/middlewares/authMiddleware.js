@@ -8,7 +8,7 @@ export const authMiddleware = catchAsyncErrors(async (req, res, next) => {
     jwtToken = req.cookies.jwtToken
 
     if (!jwtToken) {
-        return next(new ErrorHandler("User is not Authenticated!", 400))
+        return next(new ErrorHandler("User is not Authenticated!", 403))
     }
     const decoded = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY,);
 
@@ -20,7 +20,7 @@ export const authMiddleware = catchAsyncErrors(async (req, res, next) => {
 export const roleCheck = (...roles) => {
     return (req, res, next) => {
         if (!roles.includes(req.user.role)) {
-            return next(new ErrorHandler(`You are not authorized to access this!`))
+            return next(new ErrorHandler(`You are not authorized to access this!`, 403))
         }
         next();
     }
