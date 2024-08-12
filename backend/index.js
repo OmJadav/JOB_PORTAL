@@ -9,6 +9,7 @@ import fileUpload from 'express-fileupload';
 import userRouter from './routes/userRoutes.js'
 import jobRouter from './routes/jobRoutes.js'
 import ApplicationRouter from './routes/applicationRoutes.js';
+import { newsLetterCron } from './automation/newsLetterCron.js';
 
 dotenv.config();
 const app = express();
@@ -42,6 +43,7 @@ app.use('/api/applications', ApplicationRouter)
 app.listen(port, () => {
     console.log(`Server is Running on port ${port}`);
 })
+newsLetterCron()
 dbConnection();
 
 app.use(errorMiddleware)
