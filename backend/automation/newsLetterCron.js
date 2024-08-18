@@ -6,25 +6,25 @@ import { sendEmail } from '../utils/sendEmail.js'
 import ErrorHandler from '../middlewares/errorMiddleware.js'
 
 export const newsLetterCron = () => {
-    cron.schedule("*/1 * * * *", async () => {
-        console.log("Email Sent ✅");
-        const jobs = await Job.find({ newsLettersSent: false });
-        if (jobs.length === 0) {
-            console.log("No new jobs to process for newsletters.");
-            return;
-        }
-        for (const job of jobs) {
-            try {
-                const filteredUser = await User.find({
-                    $or: [
-                        { "niches.firstNiche": job.jobNiche },
-                        { "niches.secondNiche": job.jobNiche },
-                        { "niches.thirdNiche": job.jobNiche },
-                    ]
-                });
-                for (const user of filteredUser) {
-                    const subject = `Exciting Job Opportunity in ${job.jobNiche} Preferred Niche!`;
-                    const message = `
+  cron.schedule("*/2 * * * *", async () => {
+    console.log("Email Sent ✅");
+    const jobs = await Job.find({ newsLettersSent: false });
+    if (jobs.length === 0) {
+      console.log("No new jobs to process for newsletters.");
+      return;
+    }
+    for (const job of jobs) {
+      try {
+        const filteredUser = await User.find({
+          $or: [
+            { "niches.firstNiche": job.jobNiche },
+            { "niches.secondNiche": job.jobNiche },
+            { "niches.thirdNiche": job.jobNiche },
+          ]
+        });
+        for (const user of filteredUser) {
+          const subject = `Exciting Job Opportunity in ${job.jobNiche} Preferred Niche!`;
+          const message = `
                       <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                         <h2 style="color: #007bff;">Dear ${user.name},</h2>
                         
@@ -61,19 +61,19 @@ export const newsLetterCron = () => {
                         <p style="font-size: 12px; color: #888;">P.S. Make sure to update your profile to receive more tailored job alerts!</p>
                       </div>
                     `;
-                    sendEmail({
-                        email: user.email,
-                        subject,
-                        message
-                    });
-                }
-                job.newsLettersSent = true;
-                await job.save();
-            } catch (error) {
-                console.log("Error in nodecron ");
-                return next(ErrorHandler("INTERNAL SERVER ERROR", 505));
-            }
+          sendEmail({
+            email: user.email,
+            subject,
+            message
+          });
         }
-    });
+        job.newsLettersSent = true;
+        await job.save();
+      } catch (error) {
+        console.log("Error in nodecron ");
+        return next(ErrorHandler("INTERNAL SERVER ERROR", 505));
+      }
+    }
+  });
 };
 

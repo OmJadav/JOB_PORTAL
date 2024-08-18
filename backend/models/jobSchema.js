@@ -15,6 +15,7 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+        lowercase: true,
     },
     companyName: {
         type: String,
