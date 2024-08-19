@@ -9,11 +9,24 @@ import { Home } from './pages/Home';
 import { Login } from './pages/Login';
 import { PageNotFound } from './pages/PageNotFound';
 import { Jobs } from './pages/Jobs';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchLoggedInUser } from './store/Slices/userSlice';
+import { Footer } from './components/Footer';
+import { Navbar } from './components/Navbar';
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchLoggedInUser())
+  }, [])
+  const { user } = useSelector(
+    (state) => state.user
+  );
+
   return (
     <>
       <BrowserRouter>
-
+        <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/dashboard' element={<Dashboard />} />
@@ -24,6 +37,7 @@ function App() {
           <Route path='*' element={<PageNotFound />} />
         </Routes>
         <ToastContainer position="bottom-right" theme="dark" />
+        <Footer />
       </BrowserRouter>
     </>
   );
