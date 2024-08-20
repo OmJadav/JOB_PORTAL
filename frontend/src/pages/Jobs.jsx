@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { clearAllJobErrors, fetchJobs } from "../store/Slices/jobSlice";
+import { fetchJobs } from "../store/Slices/jobSlice";
 import { Spinner } from "../common/Spinner";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
@@ -38,7 +38,7 @@ export const Jobs = () => {
     "IT Consulting",
   ];
 
-  const { jobs, loading, error } = useSelector((state) => state.jobs);
+  const { jobs, loading } = useSelector((state) => state.jobs);
 
   const handleCityChange = (location) => {
     setLocation(location);
@@ -51,12 +51,8 @@ export const Jobs = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (error) {
-      toast.error(error);
-      dispatch(clearAllJobErrors());
-    }
     dispatch(fetchJobs(location, niche, searchKeyword));
-  }, [dispatch, error, location, niche]);
+  }, [dispatch, location, niche]);
 
   const handleSearch = () => {
     dispatch(fetchJobs(location, niche, searchKeyword));

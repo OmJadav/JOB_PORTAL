@@ -5,7 +5,6 @@ const jobSlice = createSlice({
     initialState: {
         jobs: [],
         loading: false,
-        error: null,
         message: null,
         singleJob: {},
         myJobs: [],
@@ -13,23 +12,20 @@ const jobSlice = createSlice({
     reducers: {
         requestFetchAllJobs(state, action) {
             state.loading = true;
-            state.error = null;
         },
         successFetchAllJobs(state, action) {
             state.loading = false;
             state.jobs = action.payload;
-            state.error = null;
         },
-        failureFetchAllJobs(state, action) {
+        requestFetchSingleJobs(state, action) {
+            state.loading = true;
+            state.message = null;
+        },
+        successFetchSingleJobs(state, action) {
             state.loading = false;
-            state.error = action.payload;
-        },
-        clearAllErrors(state, action) {
-            state.error = null;
-            state.jobs = state.jobs;
+            state.singleJob = action.payload;
         },
         resetJobSlice(state, action) {
-            state.error = null;
             state.jobs = state.jobs;
             state.loading = false;
             state.message = null;
@@ -55,20 +51,22 @@ export const fetchJobs = (location, niche, searchKeyword) => async (dispatch) =>
         }
         link += queryParams.join("&")
         const data = await getApi(link);
-        // const response = await axios.get(link, { withCredentials: true });
-        // dispatch(jobSlice.actions.successFetchAllJobs(response.data.jobs))
         dispatch(jobSlice.actions.successFetchAllJobs(data.jobs))
-        dispatch(jobSlice.actions.clearAllErrors())
     } catch (error) {
-        const errorMessage = error.data?.message || error.message;
-        dispatch(jobSlice.actions.failureFetchAllJobs(errorMessage))
     }
 }
 
+export const fetchSingleJob = (jobId) => async (dispatch) => {
+    try {
+        dispatch(jobSlice.actions.requestFetchSingleJobs());
+        let link = `${process.env.REACT_APP_BACKEND_URL}/api/jobs/singlejob/${jobId}`;
+        const data = await getApi(link);
+        dispatch(jobSlice.actions.successFetchSingleJobs(data.job));
+    } catch (error) {
 
-export const clearAllJobErrors = () => (dispatch) => {
-    dispatch(jobSlice.actions.clearAllErrors())
+    }
 }
+
 export const resetJobSlice = () => (dispatch) => {
     dispatch(jobSlice.actions.resetJobSlice())
 }

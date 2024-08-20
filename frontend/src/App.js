@@ -14,14 +14,11 @@ import { useEffect } from 'react';
 import { fetchLoggedInUser } from './store/Slices/userSlice';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchLoggedInUser())
   }, [])
-  const { user } = useSelector(
-    (state) => state.user
-  );
 
   return (
     <>
@@ -36,7 +33,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
-        <ToastContainer position="bottom-right" theme="dark" />
+        <ToastContainer position="top-right" theme="dark" />
         <Footer />
       </BrowserRouter>
     </>

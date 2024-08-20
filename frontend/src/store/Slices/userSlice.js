@@ -48,8 +48,8 @@ const userSlice = createSlice({
         },
         successLogout(state, action) {
             state.loading = false;
-            state.isUserAuthenticated = true;
-            state.user = action.payload;
+            state.isUserAuthenticated = false;
+            state.user = {};
         },
     }
 })

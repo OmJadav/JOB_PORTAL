@@ -90,6 +90,5 @@ export const getSingleJob = catchAsyncErrors(async (req, res, next) => {
     res.status(201).json({
         success: true,
         job,
-        message: "Job fetched"
     })
 })
