@@ -23,7 +23,6 @@ export const Dashboard = () => {
   const navigateTo = useNavigate();
   const handleLogout = () => {
     dispatch(logout());
-    toast.success("Logged out successfully.");
   };
   useEffect(() => {
     if (!isUserAuthenticated) {

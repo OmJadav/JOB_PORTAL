@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchLoggedInUser } from "../store/Slices/userSlice";
 import {
-  clearAllUpdateProfileErrors,
+  resetProfileAfterUpdate,
   updateProfile,
 } from "../store/Slices/updateProfileSlice";
 export const UpdateProfile = () => {
   const { user } = useSelector((state) => state.user);
-  const { loading, isUpdated, error } = useSelector(
-    (state) => state.updateProfile
-  );
+  const { loading, isUpdated } = useSelector((state) => state.updateProfile);
 
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
@@ -56,16 +53,11 @@ export const UpdateProfile = () => {
   };
 
   useEffect(() => {
-    if (error) {
-      toast.error(error);
-      dispatch(clearAllUpdateProfileErrors());
-    }
     if (isUpdated) {
-      toast.success("Profile Updated.");
       dispatch(fetchLoggedInUser());
-      dispatch(clearAllUpdateProfileErrors());
+      dispatch(resetProfileAfterUpdate());
     }
-  }, [dispatch, loading, error, isUpdated, user]);
+  }, [dispatch, isUpdated]);
 
   const resumeHandler = (e) => {
     const file = e.target.files[0];

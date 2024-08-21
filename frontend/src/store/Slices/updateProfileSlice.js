@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { updateApi } from "../../utils/updateApi";
 const updateProfileSlice = createSlice({
     name: "updateProfile",
     initialState: {
         loading: false,
-        error: null,
         isUpdated: false,
     },
     reducers: {
@@ -16,11 +16,7 @@ const updateProfileSlice = createSlice({
             state.loading = false;
             state.isUpdated = true;
         },
-        failedUpdateProfile(state, action) {
-            state.error = action.payload;
-            state.loading = false;
-            state.isUpdated = false;
-        },
+
         requestUpdatePassword(state, action) {
             state.loading = true;
         },
@@ -29,11 +25,7 @@ const updateProfileSlice = createSlice({
             state.loading = false;
             state.isUpdated = true;
         },
-        failedUpdatePassword(state, action) {
-            state.error = action.payload;
-            state.loading = false;
-            state.isUpdated = false;
-        },
+
         profileResetAfterUpdate(state, action) {
             state.error = null;
             state.isUpdated = false;
@@ -45,46 +37,25 @@ const updateProfileSlice = createSlice({
 export const updateProfile = (formData) => async (dispatch) => {
     try {
         dispatch(updateProfileSlice.actions.requestUpdateProfile());
-        const response = await axios.put(
-            `${process.env.REACT_APP_BACKEND_URL}/api/users/update/profile`
-            ,
-            formData,
-            {
-                withCredentials: true,
-                headers: { "Content-Type": "multipart/form-data" },
-            }
-        );
-        dispatch(updateProfileSlice.actions.successUpdateProfile());
+        const link = `${process.env.REACT_APP_BACKEND_URL}/api/users/update/profile`;
+        const data = await updateApi(link, formData);
+        dispatch(updateProfileSlice.actions.successUpdateProfile(data));
     } catch (error) {
-        dispatch(
-            updateProfileSlice.actions.failedUpdateProfile(
-                error.response.data.message || "Failed to update profile."
-            )
-        );
     }
 };
-export const updatePassword = (data) => async (dispatch) => {
-    dispatch(updateProfileSlice.actions.requestUpdatePassword());
+export const updatePassword = (formData) => async (dispatch) => {
     try {
-        const response = await axios.put(
-            `${process.env.REACT_APP_BACKEND_URL}/api/users/update/password`,
-            data,
-            {
-                withCredentials: true,
-                headers: { "Content-Type": "application/json" },
-            }
-        );
-        dispatch(updateProfileSlice.actions.successUpdatePassword());
+        dispatch(updateProfileSlice.actions.requestUpdatePassword());
+        const link = `${process.env.REACT_APP_BACKEND_URL}/api/users/update/password`;
+        const data = await updateApi(link, formData);
+        dispatch(updateProfileSlice.actions.successUpdatePassword(data));
     } catch (error) {
-        dispatch(
-            updateProfileSlice.actions.failedUpdatePassword(
-                error.response.data.message || "Failed to update password."
-            )
-        );
     }
 };
 
-export const clearAllUpdateProfileErrors = () => (dispatch) => {
+
+
+export const resetProfileAfterUpdate = () => (dispatch) => {
     dispatch(updateProfileSlice.actions.profileResetAfterUpdate());
 };
 

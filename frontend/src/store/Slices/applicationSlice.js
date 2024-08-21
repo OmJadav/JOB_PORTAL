@@ -6,15 +6,14 @@ import { deleteApi } from '../../utils/deleteApi';
 const applicationSlice = createSlice({
     name: "applications",
     initialState: {
-        applications: {},
+        applications: [],
         loading: false,
         message: null,
-        myApplications: [],
     },
     reducers: {
         requestAllApplications(state, action) {
             state.loading = true;
-            state.applications = {};
+            state.applications = [];
             state.message = null;
         },
         successAllApplications(state, action) {
@@ -28,7 +27,7 @@ const applicationSlice = createSlice({
         },
         successMyApplications(state, action) {
             state.loading = false;
-            state.myApplications = action.payload;
+            state.applications = action.payload;
         },
         requestPostApplication(state, action) {
             state.loading = true;
@@ -45,6 +44,12 @@ const applicationSlice = createSlice({
         successDeleteApplication(state, action) {
             state.loading = false;
             state.message = action.payload;
+        },
+        resetApplicationSlice(state, action) {
+            state.error = null;
+            state.applications = state.applications;
+            state.message = null;
+            state.loading = false;
         },
     }
 })
@@ -91,6 +96,7 @@ export const deleteApplication = (id) => async (dispatch) => {
 export const resetApplicationSlice = () => (dispatch) => {
     dispatch(applicationSlice.actions.resetApplicationSlice());
 };
+
 
 
 export default applicationSlice.reducer;

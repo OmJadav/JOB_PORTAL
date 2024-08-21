@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import { IoMdCash } from "react-icons/io";
 import { FaToolbox } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
@@ -12,9 +11,6 @@ export const PostApplication = () => {
   const { singleJob } = useSelector((state) => state.jobs);
   const { isUserAuthenticated, user } = useSelector((state) => state.user);
   const { loading, message } = useSelector((state) => state.applications);
-
-  // console.log(singleJob);
-  // console.log(user);
 
   const { jobId } = useParams();
 

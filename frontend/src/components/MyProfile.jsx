@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import ConvertDate from "../common/DateConverter";
 export const MyProfile = () => {
   const { user } = useSelector((state) => state.user);
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="account_components">
