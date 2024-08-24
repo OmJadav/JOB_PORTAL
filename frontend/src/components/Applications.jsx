@@ -29,14 +29,14 @@ export const Applications = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : applications && applications?.applications.length <= 0 ? (
+      ) : applications && applications?.applications?.length <= 0 ? (
         <h1>You have no applications from job seekers.</h1>
       ) : (
         <>
           <div className="account_components">
             <h3>Applications For Your Posted Jobs</h3>
             <div className="applications_container">
-              {applications?.applications.map((element) => {
+              {applications?.applications?.map((element) => {
                 return (
                   <div className="card" key={element._id}>
                     <p className="sub-sec">

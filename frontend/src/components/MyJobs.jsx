@@ -15,7 +15,7 @@ export const MyJobs = () => {
       dispatch(resetJobSlice());
     }
     dispatch(fetchMyJobs());
-    console.log(myJobs);
+    // console.log(myJobs);
   }, [dispatch, message]);
 
   const handleDeleteJob = (id) => {
@@ -26,7 +26,7 @@ export const MyJobs = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : myJobs && myJobs?.myJobs.length <= 0 ? (
+      ) : myJobs && myJobs?.myJobs?.length <= 0 ? (
         <h1 style={{ fontSize: "1.4rem", fontWeight: "600" }}>
           You have not posted any job!
         </h1>
@@ -35,7 +35,7 @@ export const MyJobs = () => {
           <div className="account_components">
             <h3>My Jobs</h3>
             <div className="applications_container">
-              {myJobs?.myJobs.map((element) => (
+              {myJobs?.myJobs?.map((element) => (
                 <div className="card" key={element._id}>
                   <p className="sub-sec">
                     <span>Job Title: </span>

@@ -66,14 +66,21 @@ export const JobPost = () => {
           <option value="">Select Job Type</option>
           <option value="Full-time">Full-time</option>
           <option value="Part-time">Part-time</option>
+          <option value="Contract">Contract</option>
+          <option value="Internship">Internship</option>
+          <option value="Temporary">Temporary</option>
         </select>
       </div>
       <div>
         <label>Location (City)</label>
         <select value={location} onChange={(e) => setLocation(e.target.value)}>
           <option value="">Select Job Type</option>
-          {cities.map((element) => {
-            return <option value={element}>{element}</option>;
+          {cities.map((element, index) => {
+            return (
+              <option key={index} value={element}>
+                {element}
+              </option>
+            );
           })}
         </select>
       </div>
@@ -87,11 +94,11 @@ export const JobPost = () => {
         />
       </div>
       <div>
-        <label>Company/Job Introduction</label>
+        <label>Company/Job Description</label>
         <textarea
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
-          placeholder="Company / Job Introduction"
+          placeholder="Company / Job Description"
           rows={7}
         />
       </div>
@@ -131,8 +138,12 @@ export const JobPost = () => {
         <label>Job Niche</label>
         <select value={jobNiche} onChange={(e) => setJobNiche(e.target.value)}>
           <option value="">Select Job Niche</option>
-          {nichesArrays.map((element) => {
-            return <option value={element}>{element}</option>;
+          {nichesArrays.map((element, index) => {
+            return (
+              <option key={index} value={element}>
+                {element}
+              </option>
+            );
           })}
         </select>
       </div>
@@ -163,7 +174,7 @@ export const JobPost = () => {
       </div>
       <div>
         <div className="label-infoTag-wrapper">
-          <label>Personal Website Name</label>
+          <label>Personal Website </label>
           <span>
             <CiCircleInfo /> Optional
           </span>
@@ -172,7 +183,7 @@ export const JobPost = () => {
           type="text"
           value={personalWebsite}
           onChange={(e) => setPersonalWebsite(e.target.value)}
-          placeholder="Peronsal Website Name/Title"
+          placeholder="Peronsal Website"
         />
       </div>
 

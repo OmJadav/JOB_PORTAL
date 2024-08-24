@@ -6,6 +6,10 @@ import { Spinner } from "../common/Spinner";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import ConvertDate from "../common/DateConverter";
+import {
+  locations as cities,
+  nichesArray as nichesArrays,
+} from "../common/Location_niches";
 
 export const Jobs = () => {
   const [location, setLocation] = useState("");
@@ -13,30 +17,9 @@ export const Jobs = () => {
   const [niche, setNiche] = useState("");
   const [selectedNiche, setSelectedNiche] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
-  const locations = ["Chennai", "Bengaluru", "Mumbai"];
+  const locations = cities();
 
-  const nichesArray = [
-    "Software Development",
-    "Web Development",
-    "Cybersecurity",
-    "Data Science",
-    "Artificial Intelligence",
-    "Cloud Computing",
-    "DevOps",
-    "Mobile App Development",
-    "Blockchain",
-    "Database Administration",
-    "Network Administration",
-    "UI/UX Design",
-    "Game Development",
-    "IoT (Internet of Things)",
-    "Big Data",
-    "Machine Learning",
-    "IT Project Management",
-    "IT Support and Helpdesk",
-    "Systems Administration",
-    "IT Consulting",
-  ];
+  const nichesArray = nichesArrays();
 
   const { jobs, loading } = useSelector((state) => state.jobs);
 

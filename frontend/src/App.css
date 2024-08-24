@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+  --primary-color: #dfdf07; /* Indigo 600 */
+  --secondary-text-color: #444; /* Green 400 */
+  --black-color: #111; /* Amber 500 */
+  --background-color: #f9fafb; /* Gray 50 */
+  --text-color: #1f2937; /* Gray 800 */
+  --border-color: #d1d5db; /* Gray 300 */
+}
 * {
   margin: 0;
   padding: 0;
@@ -17,8 +25,8 @@ input::-webkit-outer-spin-button {
 .btn,
 .black_btn,
 .outline_btn {
-  background: #dfdf07;
-  color: #111;
+  background: var(--primary-color);
+  color: var(--black-color);
   font-weight: 500;
   border: none;
   transition: 0.3s;
@@ -40,35 +48,35 @@ input::-webkit-outer-spin-button {
   }
 }
 .btn:hover {
-  background-color: #111;
+  background-color: var(--black-color);
   color: #fff;
   transition: 0.3s;
   cursor: pointer;
 }
 .black_btn {
-  background: #111;
+  background: var(--black-color);
   color: #fff;
 }
 .black_btn:hover {
   background: #fff;
-  color: #111;
+  color: var(--black-color);
   transition: 0.3s;
   cursor: pointer;
 }
 .outline_btn {
   background: transparent;
-  color: #dfdf07;
-  border: 1px solid #dfdf07;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }
 .btn:hover {
-  background-color: #111;
+  background-color: var(--black-color);
   color: #fff;
   transition: 0.3s;
   cursor: pointer;
 }
 .outline_btn:hover {
-  background: #dfdf07;
-  color: #111;
+  background: var(--primary-color);
+  color: var(--black-color);
   transition: 0.3s;
   cursor: pointer;
 }
@@ -93,7 +101,7 @@ input::-webkit-outer-spin-button {
   font-size: 26px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #dfdf07;
+  color: var(--primary-color);
 }
 .navbar .logo img {
   width: 120px;
@@ -116,7 +124,7 @@ input::-webkit-outer-spin-button {
   transition: 0.3s;
 }
 .navbar .links ul li a:hover {
-  color: #dfdf07;
+  color: var(--primary-color);
   transition: 0.3s;
 }
 .navbar .links ul:last-child {
@@ -213,7 +221,7 @@ input::-webkit-outer-spin-button {
 }
 .notfound .content p {
   font-size: 18px;
-  color: #111;
+  color: var(--black-color);
 }
 .notfound .content .btn {
   width: fit-content;
@@ -248,7 +256,7 @@ input::-webkit-outer-spin-button {
 }
 
 footer {
-  background: #111;
+  background: var(--black-color);
   display: flex;
   border-bottom: 1px solid rgb(133, 133, 133);
   padding: 40px 20px 20px 20px;
@@ -290,14 +298,14 @@ footer div ul a {
   transition: 0.3s;
 }
 footer div ul a:hover {
-  color: #dfdf07;
+  color: var(--primary-color);
   transition: 0.3s;
 }
 footer div ul a span {
   display: flex;
 }
 .copyright {
-  background: #111;
+  background: var(--black-color);
   display: flex;
   justify-content: center;
   text-align: center;
@@ -359,8 +367,8 @@ footer div ul a span {
 .hero .box {
   max-width: 900px;
   text-align: center;
-  background: #dfdf07;
-  color: #111;
+  background: var(--primary-color);
+  color: var(--black-color);
   padding: 50px 75px;
   border-radius: 35px;
   letter-spacing: 1px;
@@ -370,7 +378,7 @@ footer div ul a span {
 .hero .box:hover {
   transform: translateY(-10px);
   transition: 0.3s;
-  background: #111;
+  background: var(--black-color);
   color: #fff;
 }
 @media (max-width: 1720px) {
@@ -403,7 +411,7 @@ footer div ul a span {
 .services h3 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #dfdf07;
+  color: var(--primary-color);
   text-transform: uppercase;
 }
 .services .grid {
@@ -422,8 +430,8 @@ footer div ul a span {
   transition: 0.3s;
 }
 .services .grid .card:hover {
-  background: #dfdf07;
-  color: #111;
+  background: var(--primary-color);
+  color: var(--black-color);
   transition: 0.3s;
 }
 .services .grid .card h4 {
@@ -445,12 +453,12 @@ footer div ul a span {
   align-items: center;
   margin: 0 auto;
   gap: 50px;
-  background: #dfdf07;
+  background: var(--primary-color);
 }
 .howItWorks h3 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: #111;
+  color: var(--black-color);
   text-transform: uppercase;
 }
 .howItWorks .container {
@@ -470,13 +478,13 @@ footer div ul a span {
 .howItWorks .container .card:hover {
   transition: 0.3s;
   transform: translateY(-10px);
-  background: #111;
+  background: var(--black-color);
   color: #fff;
 }
 .howItWorks .container .card .icon {
   width: fit-content;
   display: flex;
-  background: #111;
+  background: var(--black-color);
   padding: 10px;
   border-radius: 100%;
   justify-content: center;
@@ -492,7 +500,7 @@ footer div ul a span {
   transition: 0.3s;
 }
 .howItWorks .container .card:hover .icon svg {
-  color: #111;
+  color: var(--black-color);
 }
 .howItWorks .container .card h4 {
   font-size: 1.3rem;
@@ -586,7 +594,7 @@ footer div ul a span {
 .authPage .container form .inputTag div svg {
   width: 10%;
   font-size: 1.5rem;
-  background: #dfdf07;
+  background: var(--primary-color);
   height: 46px;
   padding: 8px;
   color: #fff;
@@ -598,17 +606,17 @@ footer div ul a span {
   margin-top: 25px;
   font-weight: 700;
   color: #fff;
-  background: #dfdf07;
+  background: var(--primary-color);
   font-size: 1.2rem;
   border-radius: 7px;
 }
 .authPage .container form a {
   padding: 12px;
   text-align: center;
-  border: 1px solid #dfdf07;
+  border: 1px solid var(--primary-color);
   margin-top: 25px;
   font-weight: 700;
-  color: #dfdf07;
+  color: var(--primary-color);
   font-size: 1.2rem;
   text-decoration: none;
   border-radius: 7px;
@@ -708,14 +716,14 @@ footer div ul a span {
   position: absolute;
   right: 16px;
   top: 18px;
-  color: #111;
+  color: var(--black-color);
 }
 .jobs .search-tab-wrapper button {
   position: absolute;
   right: 16px;
   top: 11px;
-  background: #dfdf07;
-  color: #111;
+  background: var(--primary-color);
+  color: var(--black-color);
   font-weight: 500;
   padding: 2px 10px;
   border-radius: 7px;
@@ -756,7 +764,7 @@ footer div ul a span {
   width: 100%;
 }
 .jobs .container .jobs_container .card .product-image a {
-  color: #111;
+  color: var(--black-color);
   text-decoration: none;
 }
 .jobs .container .jobs_container .card .product-image svg {
@@ -766,7 +774,7 @@ footer div ul a span {
   font-size: 24px;
 } */
 .jobs .container .jobs_container .card .title {
-  color: #111;
+  color: var(--black-color);
   font-size: 24px;
   font-weight: 600;
 }
@@ -796,7 +804,7 @@ footer div ul a span {
 .jobs .container .jobs_container .card .salary span,
 .jobs .container .jobs_container .card .posted span {
   font-weight: 600;
-  color: #111;
+  color: var(--black-color);
   font-size: 16px;
 }
 
@@ -874,10 +882,10 @@ footer div ul a span {
 }
 .account .component_header p {
   font-weight: 500;
-  color: #111;
+  color: var(--black-color);
 }
 .account .component_header p:last-child span {
-  color: #dfdf07;
+  color: var(--primary-color);
 }
 
 .account .container {
@@ -909,11 +917,11 @@ footer div ul a span {
   background: transparent;
 }
 .account .container .sidebar .sidebar_links button:hover {
-  color: #dfdf07;
+  color: var(--primary-color);
   transition: 0.3s;
 }
 .account .container .sidebar .sidebar_links .active {
-  color: #dfdf07;
+  color: var(--primary-color);
 }
 .account .container .banner {
   width: 100%;
@@ -928,7 +936,7 @@ footer div ul a span {
   min-height: 400px;
 }
 .account_components .view-resume {
-  background: #111;
+  background: var(--black-color);
   color: #fff;
   padding: 8px 20px;
   font-size: 20px;
@@ -939,7 +947,7 @@ footer div ul a span {
 .account_components h3 {
   font-size: 30px;
   font-weight: 600;
-  color: #dfdf07;
+  color: var(--primary-color);
 }
 .account_components div:first-child {
   font-size: 30px;
@@ -1010,7 +1018,7 @@ footer div ul a span {
   background: #f5f5f5;
   padding: 22px 10px;
   text-decoration: none;
-  color: #111;
+  color: var(--black-color);
   font-weight: 500;
   font-size: 22px;
   border-radius: 8px;
@@ -1024,7 +1032,6 @@ footer div ul a span {
   gap: 30px;
 }
 .account_components .applications_container .card {
-  /* border-bottom: 1px solid rgb(133, 133, 133); */
   margin-bottom: 30px;
   background: #8080803d;
   padding: 25px 12px;
@@ -1040,7 +1047,7 @@ footer div ul a span {
 .account_components .applications_container .card .sub-sec span {
   font-weight: 600;
   font-size: 20px;
-  color: #111;
+  color: var(--black-color);
 }
 .account_components .applications_container .card .sub-sec textarea {
   background: transparent;
@@ -1083,7 +1090,7 @@ footer div ul a span {
   .move_left {
     left: 0;
     transition: 0.3s;
-    background: #111;
+    background: var(--black-color);
     z-index: 2;
   }
   .move_right {
@@ -1094,7 +1101,7 @@ footer div ul a span {
   }
   .move_right svg {
     font-size: 30px;
-    color: #111;
+    color: var(--black-color);
   }
   .move_left svg {
     font-size: 30px;
@@ -1111,7 +1118,7 @@ footer div ul a span {
   .account .container .showSidebar {
     left: 0;
     transition: 0.3s;
-    background: #111;
+    background: var(--black-color);
     height: 100%;
     width: 308px;
     padding: 20px 5px;
@@ -1411,5 +1418,5 @@ button:disabled {
 button:disabled:hover {
   background: gray;
   cursor: not-allowed;
-  color: #111;
+  color: var(--black-color);
 }

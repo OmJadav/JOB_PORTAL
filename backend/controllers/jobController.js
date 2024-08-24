@@ -55,7 +55,6 @@ export const myPostedJobs = catchAsyncErrors(async (req, res, next) => {
     res.status(201).json({
         success: true,
         myJobs,
-        message: "Success",
         jobsCount: myJobs.length,
     })
 })
