@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { nichesArray as nichesArrays } from "../common/Location_niches";
 import { fetchLoggedInUser } from "../store/Slices/userSlice";
 import {
   resetProfileAfterUpdate,
@@ -69,143 +70,147 @@ export const UpdateProfile = () => {
     };
   };
 
-  const nichesArray = [
-    "Software Development",
-    "Web Development",
-    "Cybersecurity",
-    "Data Science",
-    "Artificial Intelligence",
-    "Cloud Computing",
-    "DevOps",
-    "Mobile App Development",
-    "Blockchain",
-    "Database Administration",
-    "Network Administration",
-    "UI/UX Design",
-    "Game Development",
-    "IoT (Internet of Things)",
-    "Big Data",
-    "Machine Learning",
-    "IT Project Management",
-    "IT Support and Helpdesk",
-    "Systems Administration",
-    "IT Consulting",
-  ];
+  const nichesArray = nichesArrays();
 
   return (
-    <div className="account_components">
-      <h3>Update Profile</h3>
-      <div>
-        <label>Full Name</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Email Address</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Phone Number</label>
-        <input
-          type="number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Address</label>
-        <input
-          type="text"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+      <div className="space-y-4">
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Full Name
+          </label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Email Address
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Phone Number
+          </label>
+          <input
+            type="number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Address
+          </label>
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        {user?.user?.role === "job seeker" && (
+          <>
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 mb-1">
+                My Preferred Job Niches
+              </label>
+              <div className="space-y-2">
+                <select
+                  value={firstNiche}
+                  onChange={(e) => setFirstNiche(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+                >
+                  {nichesArray.map((element, index) => (
+                    <option value={element} key={index}>
+                      {element}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={secondNiche}
+                  onChange={(e) => setSecondNiche(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+                >
+                  {nichesArray.map((element, index) => (
+                    <option value={element} key={index}>
+                      {element}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={thirdNiche}
+                  onChange={(e) => setThirdNiche(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+                >
+                  {nichesArray.map((element, index) => (
+                    <option value={element} key={index}>
+                      {element}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 mb-1">
+                Cover Letter
+              </label>
+              <textarea
+                value={coverLetter}
+                onChange={(e) => setCoverLetter(e.target.value)}
+                rows={5}
+                className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 mb-1">
+                Upload Resume
+              </label>
+              <input
+                type="file"
+                onChange={resumeHandler}
+                className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600"
+              />
+              {user?.user?.resume && (
+                <div className="mt-2">
+                  <p className="text-gray-700 dark:text-gray-300">
+                    Current Resume:
+                  </p>
+                  <Link
+                    to={user?.user?.resume.url}
+                    target="_blank"
+                    className="text-blue-500 hover:underline"
+                  >
+                    View Resume
+                  </Link>
+                </div>
+              )}
+            </div>
+          </>
+        )}
       </div>
 
-      {user && user?.user?.role === "job seeker" && (
-        <>
-          <div>
-            <label>My Preferred Job Niches</label>
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "15px" }}
-            >
-              <select
-                value={firstNiche}
-                onChange={(e) => setFirstNiche(e.target.value)}
-              >
-                {nichesArray.map((element, index) => {
-                  return (
-                    <option value={element} key={index}>
-                      {element}
-                    </option>
-                  );
-                })}
-              </select>
-              <select
-                value={secondNiche}
-                onChange={(e) => setSecondNiche(e.target.value)}
-              >
-                {nichesArray.map((element, index) => {
-                  return (
-                    <option value={element} key={index}>
-                      {element}
-                    </option>
-                  );
-                })}
-              </select>
-              <select
-                value={thirdNiche}
-                onChange={(e) => setThirdNiche(e.target.value)}
-              >
-                {nichesArray.map((element, index) => {
-                  return (
-                    <option value={element} key={index}>
-                      {element}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-          </div>
-          <div>
-            <label>Coverletter</label>
-            <textarea
-              value={coverLetter}
-              onChange={(e) => setCoverLetter(e.target.value)}
-              rows={5}
-            />
-          </div>
-          <div>
-            <label>Upload Resume</label>
-            <input type="file" onChange={resumeHandler} />
-            {user && user?.user?.resume && (
-              <div>
-                <p>Current Resume:</p>
-                <Link
-                  to={user?.user?.resume && user?.user?.resume.url}
-                  target="_blank"
-                  className="view-resume"
-                >
-                  View Resume
-                </Link>
-              </div>
-            )}
-          </div>
-        </>
-      )}
-      <div className="save_change_btn_wrapper">
+      <div className="mt-6 flex justify-end">
         <button
-          className="btn"
+          className="bg-deepNavy text-white py-2 px-4 rounded-md hover:bg-deepNavy-hover disabled:bg-blue-300"
           onClick={handleUpdateProfile}
           disabled={loading}
         >
-          {" "}
           Save Changes
         </button>
       </div>

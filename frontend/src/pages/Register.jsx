@@ -82,184 +82,206 @@ export const Register = () => {
 
   return (
     <>
-      <section className="authPage">
-        <div className="container">
-          <div className="header">
-            <h3>Create a new account</h3>
+      <section className="min-h-screen  flex items-center justify-center bg-gradient-to-br from-deepNavy-hover via-purple-500 to-deepNavy">
+        <div className="bg-white mt-5 mb-5 dark:bg-gray-900 rounded-3xl shadow-lg overflow-hidden max-w-2xl w-full transform transition-all duration-300 ">
+          <div className="p-5 ">
+            <h3 className="text-3xl font-bold text-gray-800 dark:text-white text-center mb-6">
+              Create a New Account
+            </h3>
+            <form onSubmit={handleRegister} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="inputTag">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Register As
+                  </label>
+                  <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                    <select
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                      className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                    >
+                      <option value="">Select Role</option>
+                      <option value="employer">Register as an Employer</option>
+                      <option value="job seeker">
+                        Register as a Job Seeker
+                      </option>
+                    </select>
+                    <FaRegUser className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                  </div>
+                </div>
+                <div className="inputTag">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Name
+                  </label>
+                  <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                    />
+                    <FaPencilAlt className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="inputTag">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Email Address
+                  </label>
+                  <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                    <input
+                      type="email"
+                      placeholder="youremail@gmail.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                    />
+                    <MdOutlineMailOutline className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                  </div>
+                </div>
+                <div className="inputTag">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Phone Number
+                  </label>
+                  <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                    <input
+                      type="number"
+                      placeholder="111-222-333"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                    />
+                    <FaPhoneFlip className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="inputTag">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Address
+                  </label>
+                  <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                    <input
+                      type="text"
+                      placeholder="Your Address"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                    />
+                    <FaAddressBook className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                  </div>
+                </div>
+                <div className="inputTag">
+                  <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                    Password
+                  </label>
+                  <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                    <input
+                      type="password"
+                      placeholder="Your Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                    />
+                    <RiLock2Fill className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                  </div>
+                </div>
+              </div>
+              {role === "job seeker" && (
+                <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="inputTag">
+                      <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                        Your First Niche
+                      </label>
+                      <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                        <select
+                          value={firstNiche}
+                          onChange={(e) => setFirstNiche(e.target.value)}
+                          className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                        >
+                          <option value="">Your Niche</option>
+                          {nichesArray.map((niche, index) => (
+                            <option key={index} value={niche}>
+                              {niche}
+                            </option>
+                          ))}
+                        </select>
+                        <MdCategory className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                      </div>
+                    </div>
+                    <div className="inputTag">
+                      <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                        Your Second Niche
+                      </label>
+                      <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                        <select
+                          value={secondNiche}
+                          onChange={(e) => setSecondNiche(e.target.value)}
+                          className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                        >
+                          <option value="">Your Niche</option>
+                          {nichesArray.map((niche, index) => (
+                            <option key={index} value={niche}>
+                              {niche}
+                            </option>
+                          ))}
+                        </select>
+                        <MdCategory className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-6">
+                    <div className="inputTag">
+                      <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                        Cover Letter
+                      </label>
+                      <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                        <textarea
+                          value={coverLetter}
+                          onChange={(e) => setCoverLetter(e.target.value)}
+                          rows={5}
+                          className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 gap-6">
+                    <div className="inputTag">
+                      <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                        Resume
+                      </label>
+                      <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                        <input
+                          type="file"
+                          onChange={resumeHandler}
+                          className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                          style={{ border: "none" }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-deepNavy dark:bg-deepNavy hover:bg-deepNavy-hover dark:hover:bg-deepNavy-hover text-white font-bold py-3 px-6 rounded-full transition duration-300"
+                >
+                  Register
+                </button>
+                <Link
+                  to={"/login"}
+                  className="block text-deepNavy dark:text-deepNavy mt-4 underline"
+                >
+                  Login Now
+                </Link>
+              </div>
+            </form>
           </div>
-          <form onSubmit={handleRegister}>
-            <div className="wrapper">
-              <div className="inputTag">
-                <label>Register As</label>
-                <div>
-                  <select
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                  >
-                    <option value="">Select Role</option>
-                    <option value="employer">Register as an Employer</option>
-                    <option value="job seeker">Register as a Job Seeker</option>
-                  </select>
-                  <FaRegUser />
-                </div>
-              </div>
-              <div className="inputTag">
-                <label>Name</label>
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  <FaPencilAlt />
-                </div>
-              </div>
-            </div>
-            <div className="wrapper">
-              <div className="inputTag">
-                <label>Email Address</label>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="youremail@gmail.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <MdOutlineMailOutline />
-                </div>
-              </div>
-              <div className="inputTag">
-                <label>Phone Number</label>
-                <div>
-                  <input
-                    type="number"
-                    placeholder="111-222-333"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                  />
-                  <FaPhoneFlip />
-                </div>
-              </div>
-            </div>
-            <div className="wrapper">
-              <div className="inputTag">
-                <label>Address</label>
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                  <FaAddressBook />
-                </div>
-              </div>
-              <div className="inputTag">
-                <label>Password</label>
-                <div>
-                  <input
-                    type="password"
-                    placeholder="Your Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <RiLock2Fill />
-                </div>
-              </div>
-            </div>
-            {role === "job seeker" && (
-              <>
-                <div className="wrapper">
-                  <div className="inputTag">
-                    <label>Your First Niche</label>
-                    <div>
-                      <select
-                        value={firstNiche}
-                        onChange={(e) => setFirstNiche(e.target.value)}
-                      >
-                        <option value="">Your Niche</option>
-                        {nichesArray.map((niche, index) => {
-                          return (
-                            <option key={index} value={niche}>
-                              {niche}
-                            </option>
-                          );
-                        })}
-                      </select>
-                      <MdCategory />
-                    </div>
-                  </div>
-                  <div className="inputTag">
-                    <label>Your Second Niche</label>
-                    <div>
-                      <select
-                        value={secondNiche}
-                        onChange={(e) => setSecondNiche(e.target.value)}
-                      >
-                        <option value="">Your Niche</option>
-                        {nichesArray.map((niche, index) => {
-                          return (
-                            <option key={index} value={niche}>
-                              {niche}
-                            </option>
-                          );
-                        })}
-                      </select>
-                      <MdCategory />
-                    </div>
-                  </div>
-                  <div className="inputTag">
-                    <label>Your Third Niche</label>
-                    <div>
-                      <select
-                        value={thirdNiche}
-                        onChange={(e) => setThirdNiche(e.target.value)}
-                      >
-                        <option value="">Your Niche</option>
-                        {nichesArray.map((niche, index) => {
-                          return (
-                            <option key={index} value={niche}>
-                              {niche}
-                            </option>
-                          );
-                        })}
-                      </select>
-                      <MdCategory />
-                    </div>
-                  </div>
-                </div>
-                <div className="wrapper">
-                  <div className="inputTag">
-                    <label>Coverletter</label>
-                    <div>
-                      <textarea
-                        value={coverLetter}
-                        onChange={(e) => setCoverLetter(e.target.value)}
-                        rows={7}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="wrapper">
-                  <div className="inputTag">
-                    <label>Resume</label>
-                    <div>
-                      <input
-                        type="file"
-                        onChange={resumeHandler}
-                        style={{ border: "none" }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-            <button type="submit" disabled={loading}>
-              Register
-            </button>
-            <Link to={"/login"}>Login Now</Link>
-          </form>
         </div>
       </section>
     </>

@@ -32,47 +32,59 @@ export const MyJobs = () => {
         </h1>
       ) : (
         <>
-          <div className="account_components">
-            <h3>My Jobs</h3>
-            <div className="applications_container">
-              {myJobs?.myJobs?.map((element) => (
-                <div className="card" key={element._id}>
-                  <p className="sub-sec">
-                    <span>Job Title: </span>
-                    {element.title}
+          <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <div className="space-y-6">
+              {myJobs?.myJobs?.map((job) => (
+                <div
+                  className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-sm"
+                  key={job._id}
+                >
+                  <p className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+                    <span className="font-semibold">Job Title:</span>{" "}
+                    {job.title}
                   </p>
-                  <p className="sub-sec">
-                    <span>Job Niche:</span> {element.jobNiche}
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Job Niche:</span>{" "}
+                    {job.jobNiche}
                   </p>
-                  <p className="sub-sec">
-                    <span>Salary: </span> {element.salary}
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Salary:</span> {job.salary}
                   </p>
-                  <p className="sub-sec">
-                    <span>Location:</span> {element.location}
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Location:</span>{" "}
+                    {job.location}
                   </p>
-                  <p className="sub-sec">
-                    <span>Job Type:</span> {element.jobType}
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Job Type:</span>{" "}
+                    {job.jobType}
                   </p>
-                  <p className="sub-sec">
-                    <span>Company Name:</span> {element.companyName}
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Company Name:</span>{" "}
+                    {job.companyName}
                   </p>
-                  <p className="sub-sec">
-                    <span>Introduction:</span> {element.introduction}
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Introduction:</span>{" "}
+                    {job.introduction}
                   </p>
-                  <p className="sub-sec">
-                    <span>Qualifications:</span> {element.qualifications}
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Qualifications:</span>{" "}
+                    {job.qualifications}
                   </p>
-                  <p className="sub-sec">
-                    <span>Responsibilities:</span> {element.responsibilities}
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Responsibilities:</span>{" "}
+                    {job.responsibilities}
                   </p>
-                  {element.offers && (
-                    <p className="sub-sec">
-                      <span>What Are We Offering:</span> {element.offers}
+                  {job.offers && (
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                      <span className="font-semibold">
+                        What Are We Offering:
+                      </span>{" "}
+                      {job.offers}
                     </p>
                   )}
                   <button
-                    className="btn"
-                    onClick={() => handleDeleteJob(element._id)}
+                    className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 disabled:bg-red-300"
+                    onClick={() => handleDeleteJob(job._id)}
                   >
                     Delete Job
                   </button>

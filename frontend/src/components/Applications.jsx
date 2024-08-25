@@ -27,70 +27,79 @@ export const Applications = () => {
   };
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : applications && applications?.applications?.length <= 0 ? (
-        <h1>You have no applications from job seekers.</h1>
-      ) : (
-        <>
-          <div className="account_components">
-            <h3>Applications For Your Posted Jobs</h3>
-            <div className="applications_container">
-              {applications?.applications?.map((element) => {
-                return (
-                  <div className="card" key={element._id}>
-                    <p className="sub-sec">
-                      <span>Job Title: </span> {element.jobInfo.jobTitle}
-                    </p>
-                    <p className="sub-sec">
-                      <span>Applicant's Name: </span>{" "}
-                      {element.jobSeekerInfo.name}
-                    </p>
-                    <p className="sub-sec">
-                      <span>Applicant's Email:</span>{" "}
-                      {element.jobSeekerInfo.email}
-                    </p>
-                    <p className="sub-sec">
-                      <span>Applicant's Phone: </span>{" "}
-                      {element.jobSeekerInfo.phone}
-                    </p>
-                    <p className="sub-sec">
-                      <span>Applicant's Address: </span>{" "}
-                      {element.jobSeekerInfo.address}
-                    </p>
-                    <p className="sub-sec">
-                      <span>Applicant's CoverLetter: </span>
-                      <textarea
-                        value={element.jobSeekerInfo.coverLetter}
-                        rows={5}
-                        disabled
-                      ></textarea>
-                    </p>
-                    <div className="btn-wrapper">
-                      <button
-                        className="outline_btn"
-                        onClick={() => handleDeleteApplication(element._id)}
-                      >
-                        Delete Application
-                      </button>
+      <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        {loading ? (
+          <Spinner />
+        ) : applications && applications?.applications?.length <= 0 ? (
+          <h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            You have no applications from job seekers.
+          </h1>
+        ) : (
+          <>
+            <div className="space-y-6">
+              {applications?.applications?.map((application, index) => (
+                <div
+                  className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-sm"
+                  key={application._id}
+                >
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Application Number :</span>{" "}
+                    {index + 1}
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Job Title:</span>{" "}
+                    {application.jobInfo.jobTitle}
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Applicant's Name:</span>{" "}
+                    {application.jobSeekerInfo.name}
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Applicant's Email:</span>{" "}
+                    {application.jobSeekerInfo.email}
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Applicant's Phone:</span>{" "}
+                    {application.jobSeekerInfo.phone}
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                    <span className="font-semibold">Applicant's Address:</span>{" "}
+                    {application.jobSeekerInfo.address}
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                    <span className="font-semibold">
+                      Applicant's Cover Letter:
+                    </span>
+                    <textarea
+                      value={application.jobSeekerInfo.coverLetter}
+                      rows={5}
+                      disabled
+                      className="w-full mt-1 p-2 border border-gray-300 dark:border-gray-600 rounded-md"
+                    ></textarea>
+                  </p>
+                  <div className="flex gap-4">
+                    <button
+                      className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 disabled:bg-red-300"
+                      onClick={() => handleDeleteApplication(application._id)}
+                    >
+                      Delete Application
+                    </button>
+                    {application.jobSeekerInfo.resume?.url && (
                       <Link
-                        to={
-                          element.jobSeekerInfo &&
-                          element.jobSeekerInfo.resume.url
-                        }
-                        className="btn"
+                        to={application.jobSeekerInfo.resume.url}
+                        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
                         target="_blank"
                       >
                         View Resume
                       </Link>
-                    </div>
+                    )}
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </>
   );
 };

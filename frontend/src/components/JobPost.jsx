@@ -49,148 +49,362 @@ export const JobPost = () => {
     }
   }, [dispatch, loading, message]);
   return (
-    <div className="account_components">
-      <h3>Post A Job</h3>
-      <div>
-        <label>Title</label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Job Title"
-        />
-      </div>
-      <div>
-        <label>Job Type</label>
-        <select value={jobType} onChange={(e) => setJobType(e.target.value)}>
-          <option value="">Select Job Type</option>
-          <option value="Full-time">Full-time</option>
-          <option value="Part-time">Part-time</option>
-          <option value="Contract">Contract</option>
-          <option value="Internship">Internship</option>
-          <option value="Temporary">Temporary</option>
-        </select>
-      </div>
-      <div>
-        <label>Location (City)</label>
-        <select value={location} onChange={(e) => setLocation(e.target.value)}>
-          <option value="">Select Job Type</option>
-          {cities.map((element, index) => {
-            return (
-              <option key={index} value={element}>
-                {element}
+    // <div className="account_components">
+    //   <h3>Post A Job</h3>
+    //   <div>
+    //     <label>Title</label>
+    //     <input
+    //       type="text"
+    //       value={title}
+    //       onChange={(e) => setTitle(e.target.value)}
+    //       placeholder="Job Title"
+    //     />
+    //   </div>
+    //   <div>
+    //     <label>Job Type</label>
+    //     <select value={jobType} onChange={(e) => setJobType(e.target.value)}>
+    //       <option value="">Select Job Type</option>
+    //       <option value="Full-time">Full-time</option>
+    //       <option value="Part-time">Part-time</option>
+    //       <option value="Contract">Contract</option>
+    //       <option value="Internship">Internship</option>
+    //       <option value="Temporary">Temporary</option>
+    //     </select>
+    //   </div>
+    //   <div>
+    //     <label>Location (City)</label>
+    //     <select value={location} onChange={(e) => setLocation(e.target.value)}>
+    //       <option value="">Select Job Type</option>
+    //       {cities.map((element, index) => {
+    //         return (
+    //           <option key={index} value={element}>
+    //             {element}
+    //           </option>
+    //         );
+    //       })}
+    //     </select>
+    //   </div>
+    //   <div>
+    //     <label>Company Name</label>
+    //     <input
+    //       type="text"
+    //       value={companyName}
+    //       onChange={(e) => setCompanyName(e.target.value)}
+    //       placeholder="Company Name"
+    //     />
+    //   </div>
+    //   <div>
+    //     <label>Company/Job Description</label>
+    //     <textarea
+    //       value={jobDescription}
+    //       onChange={(e) => setJobDescription(e.target.value)}
+    //       placeholder="Company / Job Description"
+    //       rows={7}
+    //     />
+    //   </div>
+    //   <div>
+    //     <label>Responsibilities</label>
+    //     <textarea
+    //       value={responsibilities}
+    //       onChange={(e) => setResponsibilities(e.target.value)}
+    //       placeholder="Job Responsibilities"
+    //       rows={7}
+    //     />
+    //   </div>
+    //   <div>
+    //     <label>Qualifications</label>
+    //     <textarea
+    //       value={qualifications}
+    //       onChange={(e) => setQualifications(e.target.value)}
+    //       placeholder="Required Qualifications For Job"
+    //       rows={7}
+    //     />
+    //   </div>
+    //   <div>
+    //     <div className="label-infoTag-wrapper">
+    //       <label>What We Offer</label>
+    //       <span>
+    //         <CiCircleInfo /> Optional
+    //       </span>
+    //     </div>
+    //     <textarea
+    //       value={benefits}
+    //       onChange={(e) => setBenefits(e.target.value)}
+    //       placeholder="What are the benefits!"
+    //       rows={7}
+    //     />
+    //   </div>
+    //   <div>
+    //     <label>Job Niche</label>
+    //     <select value={jobNiche} onChange={(e) => setJobNiche(e.target.value)}>
+    //       <option value="">Select Job Niche</option>
+    //       {nichesArrays.map((element, index) => {
+    //         return (
+    //           <option key={index} value={element}>
+    //             {element}
+    //           </option>
+    //         );
+    //       })}
+    //     </select>
+    //   </div>
+    //   <div>
+    //     <label>Salary</label>
+    //     <input
+    //       type="text"
+    //       value={salary}
+    //       onChange={(e) => setSalary(e.target.value)}
+    //       placeholder="50000 - 800000"
+    //     />
+    //   </div>
+    //   <div>
+    //     <div className="label-infoTag-wrapper">
+    //       <label>Hiring Multiple Candidates?</label>
+    //       <span>
+    //         <CiCircleInfo /> Optional
+    //       </span>
+    //     </div>
+    //     <select
+    //       value={hiringMultipleCandidates}
+    //       onChange={(e) => setHiringMultipleCandidates(e.target.value)}
+    //     >
+    //       <option value="">Hiring Multiple Candidates?</option>
+    //       <option value="Yes">Yes</option>
+    //       <option value="No">No</option>
+    //     </select>
+    //   </div>
+    //   <div>
+    //     <div className="label-infoTag-wrapper">
+    //       <label>Personal Website </label>
+    //       <span>
+    //         <CiCircleInfo /> Optional
+    //       </span>
+    //     </div>
+    //     <input
+    //       type="text"
+    //       value={personalWebsite}
+    //       onChange={(e) => setPersonalWebsite(e.target.value)}
+    //       placeholder="Peronsal Website"
+    //     />
+    //   </div>
+
+    //   <div>
+    //     <button
+    //       style={{ margin: "0 auto" }}
+    //       className="btn"
+    //       onClick={handlePostJob}
+    //       disabled={loading}
+    //     >
+    //       Post Job
+    //     </button>
+    //   </div>
+    // </div>
+    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+      <div className="space-y-4">
+        {/* Title */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Title
+          </label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Job Title"
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        {/* Job Type */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Job Type
+          </label>
+          <select
+            value={jobType}
+            onChange={(e) => setJobType(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          >
+            <option value="">Select Job Type</option>
+            <option value="Full-time">Full-time</option>
+            <option value="Part-time">Part-time</option>
+            <option value="Contract">Contract</option>
+            <option value="Internship">Internship</option>
+            <option value="Temporary">Temporary</option>
+          </select>
+        </div>
+
+        {/* Location */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Location (City)
+          </label>
+          <select
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          >
+            <option value="">Select City</option>
+            {cities.map((city, index) => (
+              <option key={index} value={city}>
+                {city}
               </option>
-            );
-          })}
-        </select>
-      </div>
-      <div>
-        <label>Company Name</label>
-        <input
-          type="text"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-          placeholder="Company Name"
-        />
-      </div>
-      <div>
-        <label>Company/Job Description</label>
-        <textarea
-          value={jobDescription}
-          onChange={(e) => setJobDescription(e.target.value)}
-          placeholder="Company / Job Description"
-          rows={7}
-        />
-      </div>
-      <div>
-        <label>Responsibilities</label>
-        <textarea
-          value={responsibilities}
-          onChange={(e) => setResponsibilities(e.target.value)}
-          placeholder="Job Responsibilities"
-          rows={7}
-        />
-      </div>
-      <div>
-        <label>Qualifications</label>
-        <textarea
-          value={qualifications}
-          onChange={(e) => setQualifications(e.target.value)}
-          placeholder="Required Qualifications For Job"
-          rows={7}
-        />
-      </div>
-      <div>
-        <div className="label-infoTag-wrapper">
-          <label>What We Offer</label>
-          <span>
-            <CiCircleInfo /> Optional
-          </span>
+            ))}
+          </select>
         </div>
-        <textarea
-          value={benefits}
-          onChange={(e) => setBenefits(e.target.value)}
-          placeholder="What are the benefits!"
-          rows={7}
-        />
-      </div>
-      <div>
-        <label>Job Niche</label>
-        <select value={jobNiche} onChange={(e) => setJobNiche(e.target.value)}>
-          <option value="">Select Job Niche</option>
-          {nichesArrays.map((element, index) => {
-            return (
-              <option key={index} value={element}>
-                {element}
+
+        {/* Company Name */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Company Name
+          </label>
+          <input
+            type="text"
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+            placeholder="Company Name"
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        {/* Company/Job Description */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Company/Job Description
+          </label>
+          <textarea
+            value={jobDescription}
+            onChange={(e) => setJobDescription(e.target.value)}
+            placeholder="Company / Job Description"
+            rows={7}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        {/* Responsibilities */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Responsibilities
+          </label>
+          <textarea
+            value={responsibilities}
+            onChange={(e) => setResponsibilities(e.target.value)}
+            placeholder="Job Responsibilities"
+            rows={7}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        {/* Qualifications */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Qualifications
+          </label>
+          <textarea
+            value={qualifications}
+            onChange={(e) => setQualifications(e.target.value)}
+            placeholder="Required Qualifications For Job"
+            rows={7}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        {/* Benefits */}
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <label className="text-gray-700 dark:text-gray-300">
+              What We Offer
+            </label>
+            <span className="text-gray-500 dark:text-gray-400 flex items-center">
+              <CiCircleInfo className="mr-1" /> Optional
+            </span>
+          </div>
+          <textarea
+            value={benefits}
+            onChange={(e) => setBenefits(e.target.value)}
+            placeholder="What are the benefits!"
+            rows={7}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
+
+        {/* Job Niche */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Job Niche
+          </label>
+          <select
+            value={jobNiche}
+            onChange={(e) => setJobNiche(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          >
+            <option value="">Select Job Niche</option>
+            {nichesArrays.map((niche, index) => (
+              <option key={index} value={niche}>
+                {niche}
               </option>
-            );
-          })}
-        </select>
-      </div>
-      <div>
-        <label>Salary</label>
-        <input
-          type="text"
-          value={salary}
-          onChange={(e) => setSalary(e.target.value)}
-          placeholder="50000 - 800000"
-        />
-      </div>
-      <div>
-        <div className="label-infoTag-wrapper">
-          <label>Hiring Multiple Candidates?</label>
-          <span>
-            <CiCircleInfo /> Optional
-          </span>
+            ))}
+          </select>
         </div>
-        <select
-          value={hiringMultipleCandidates}
-          onChange={(e) => setHiringMultipleCandidates(e.target.value)}
-        >
-          <option value="">Hiring Multiple Candidates?</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-      <div>
-        <div className="label-infoTag-wrapper">
-          <label>Personal Website </label>
-          <span>
-            <CiCircleInfo /> Optional
-          </span>
+
+        {/* Salary */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            Salary
+          </label>
+          <input
+            type="text"
+            value={salary}
+            onChange={(e) => setSalary(e.target.value)}
+            placeholder="50000 - 800000"
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
         </div>
-        <input
-          type="text"
-          value={personalWebsite}
-          onChange={(e) => setPersonalWebsite(e.target.value)}
-          placeholder="Peronsal Website"
-        />
+
+        {/* Hiring Multiple Candidates */}
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <label className="text-gray-700 dark:text-gray-300">
+              Hiring Multiple Candidates?
+            </label>
+            <span className="text-gray-500 dark:text-gray-400 flex items-center">
+              <CiCircleInfo className="mr-1" /> Optional
+            </span>
+          </div>
+          <select
+            value={hiringMultipleCandidates}
+            onChange={(e) => setHiringMultipleCandidates(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          >
+            <option value="">Hiring Multiple Candidates?</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        {/* Personal Website */}
+        <div>
+          <div className="flex items-center justify-between mb-1">
+            <label className="text-gray-700 dark:text-gray-300">
+              Personal Website
+            </label>
+            <span className="text-gray-500 dark:text-gray-400 flex items-center">
+              <CiCircleInfo className="mr-1" /> Optional
+            </span>
+          </div>
+          <input
+            type="text"
+            value={personalWebsite}
+            onChange={(e) => setPersonalWebsite(e.target.value)}
+            placeholder="Personal Website"
+            className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+          />
+        </div>
       </div>
 
-      <div>
+      {/* Post Job Button */}
+      <div className="mt-6 flex justify-center">
         <button
-          style={{ margin: "0 auto" }}
-          className="btn"
+          className="bg-deepNavy text-white py-2 px-4 rounded-md hover:bg-deepNavy-hover disabled:bg-blue-300"
           onClick={handlePostJob}
           disabled={loading}
         >
