@@ -43,14 +43,23 @@ export const TopNiches = () => {
 
   return (
     <>
-      <section className="services">
-        <h3>Top Niches</h3>
-        <div className="grid">
+      <section className="py-16 px-4 mx-auto max-w-screen-xl text-center">
+        <h3 className="text-2xl font-bold mb-8 text-deepNavy dark:text-deepNavy">
+          Top Niches
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((element) => {
             return (
-              <div className="card" key={element.id}>
-                <h4>{element.service}</h4>
-                <p>{element.description}</p>
+              <div
+                className="bg-white dark:bg-charcoalBlack p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+                key={element.id}
+              >
+                <h4 className="text-xl font-semibold mb-4 text-deepNavy dark:text-deepNavy">
+                  {element.service}
+                </h4>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {element.description}
+                </p>
               </div>
             );
           })}
