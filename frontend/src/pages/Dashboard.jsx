@@ -42,7 +42,7 @@ export const Dashboard = () => {
     <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
       <div
         className={`transition-transform duration-300 ease-in-out ${
-          showSidebar ? "w-64" : "w-12"
+          showSidebar ? "w-64" : "w-10"
         } bg-white dark:bg-gray-800 shadow-md`}
       >
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">

@@ -14,7 +14,7 @@ const applicationSchema = new mongoose.Schema({
         email: {
             type: String,
             required: true,
-            unique: true, lowercase: true,
+            lowercase: true,
             trim: true, match: [/\b\w+@[\w.-]+\.\w{2,4}\b/gi, 'invalid email'],
         },
         address: {

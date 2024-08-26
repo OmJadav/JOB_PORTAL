@@ -7,6 +7,7 @@ import {
   fetchAllJobSeekerApplications,
   resetApplicationSlice,
 } from "../store/Slices/applicationSlice";
+
 export const MyApplications = () => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const { loading, applications, message } = useSelector(
@@ -16,7 +17,7 @@ export const MyApplications = () => {
 
   useEffect(() => {
     dispatch(fetchAllJobSeekerApplications());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (message) {
@@ -34,64 +35,97 @@ export const MyApplications = () => {
       {loading ? (
         <Spinner />
       ) : applications && applications?.applications?.length <= 0 ? (
-        <h1 style={{ fontSize: "1.4rem", fontWeight: "600" }}>
+        <h1 className="p-6 bg-white  rounded-lg shadow-md text-lg font-semibold text-gray-900 dark:text-gray-100">
           You have not applied for any job.
         </h1>
       ) : (
-        <>
-          <div className="account_components">
-            <h3>My Application For Jobs</h3>
-            <div className="applications_container">
-              {applications?.applications?.map((element) => {
-                return (
-                  <div className="card" key={element._id}>
-                    <p className="sub-sec">
-                      <span>Job Title: </span> {element.jobInfo.jobTitle}
+        <div className="min-h-screen py-1 bg-gray-100 dark:bg-gray-900 sm:py-2">
+          <div className="container mx-auto px-0 lg:px-8">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {applications?.applications?.map((element) => (
+                <div
+                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition relative"
+                  key={element._id}
+                >
+                  <div className="mb-4">
+                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                      <span className="font-semibold">Job Title:</span>{" "}
+                      {element.jobInfo.jobTitle}
                     </p>
-                    <p className="sub-sec">
-                      <span>Name</span> {element.jobSeekerInfo.name}
+                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                      <span className="font-semibold">
+                        Application Status :
+                      </span>{" "}
+                      {element?.status === "Submitted" && (
+                        <span className=" bg-blue-100 text-blue-800 text-sm py-1 px-2 rounded-md">
+                          {element.status}
+                        </span>
+                      )}
+                      {element?.status === "Reviewed" && (
+                        <span className=" bg-yellow-100 text-yellow-800 text-sm py-1 px-2 rounded-md">
+                          {element.status}
+                        </span>
+                      )}
+                      {element?.status === "Rejected" && (
+                        <span className=" bg-red-100 text-red-800 text-sm py-1 px-2 rounded-md">
+                          {element.status}
+                        </span>
+                      )}
+                      {element?.status === "Accepted" && (
+                        <span className=" bg-green-100 text-green-800 text-sm py-1 px-2 rounded-md">
+                          {element.status}
+                        </span>
+                      )}
                     </p>
-                    <p className="sub-sec">
-                      <span>Email</span> {element.jobSeekerInfo.email}
+                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                      <span className="font-semibold">Name:</span>{" "}
+                      {element.jobSeekerInfo.name}
                     </p>
-                    <p className="sub-sec">
-                      <span>Phone: </span> {element.jobSeekerInfo.phone}
+                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                      <span className="font-semibold">Email:</span>{" "}
+                      {element.jobSeekerInfo.email}
                     </p>
-                    <p className="sub-sec">
-                      <span>Address: </span> {element.jobSeekerInfo.address}
+                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                      <span className="font-semibold">Phone:</span>{" "}
+                      {element.jobSeekerInfo.phone}
                     </p>
-                    <p className="sub-sec">
-                      <span>Coverletter: </span>
+                    <p className="text-gray-700 dark:text-gray-300 mb-2">
+                      <span className="font-semibold">Address:</span>{" "}
+                      {element.jobSeekerInfo.address}
+                    </p>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      <span className="font-semibold">Cover Letter:</span>
                       <textarea
                         value={element.jobSeekerInfo.coverLetter}
                         rows={5}
                         disabled
+                        className="w-full mt-2 p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600"
                       ></textarea>
                     </p>
-                    <div className="btn-wrapper">
-                      <button
-                        className="outline_btn"
-                        onClick={() => handleDeleteApplication(element._id)}
-                      >
-                        Delete Application
-                      </button>
-                      <Link
-                        to={
-                          element.jobSeekerInfo &&
-                          element.jobSeekerInfo.resume.url
-                        }
-                        className="btn"
-                        target="_blank"
-                      >
-                        View Resume
-                      </Link>
-                    </div>
                   </div>
-                );
-              })}
+                  <div className="flex justify-between items-center">
+                    <button
+                      className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 disabled:bg-red-300"
+                      onClick={() => handleDeleteApplication(element._id)}
+                    >
+                      Delete
+                    </button>
+                    <Link
+                      to={
+                        element.jobSeekerInfo &&
+                        element.jobSeekerInfo.resume.url
+                      }
+                      className="px-4 ml-1 py-2 bg-deepNavy text-white rounded-md hover:bg-deepNavy-hover transition"
+                      target="_blank"
+                    >
+                      View Resume
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

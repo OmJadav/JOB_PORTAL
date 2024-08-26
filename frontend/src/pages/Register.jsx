@@ -76,7 +76,7 @@ export const Register = () => {
 
   useEffect(() => {
     if (isUserAuthenticated) {
-      navigateTo("/login");
+      window.location.href = "/login";
     }
   }, [dispatch, isUserAuthenticated, message]);
 
@@ -220,6 +220,26 @@ export const Register = () => {
                         <select
                           value={secondNiche}
                           onChange={(e) => setSecondNiche(e.target.value)}
+                          className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
+                        >
+                          <option value="">Your Niche</option>
+                          {nichesArray.map((niche, index) => (
+                            <option key={index} value={niche}>
+                              {niche}
+                            </option>
+                          ))}
+                        </select>
+                        <MdCategory className="text-deepNavy dark:text-deepNavy-hover mx-4" />
+                      </div>
+                    </div>
+                    <div className="inputTag">
+                      <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
+                        Your Third Niche
+                      </label>
+                      <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
+                        <select
+                          value={thirdNiche}
+                          onChange={(e) => setThirdNiche(e.target.value)}
                           className="w-full px-4 py-3 text-gray-900 dark:text-white bg-transparent focus:outline-none"
                         >
                           <option value="">Your Niche</option>

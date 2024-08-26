@@ -9,7 +9,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { loading, isUserAuthenticated, error } = useSelector(
+  const { user, loading, isUserAuthenticated } = useSelector(
     (state) => state.user
   );
 
@@ -23,11 +23,9 @@ export const Login = () => {
     formData.append("password", password);
     dispatch(login(formData));
   };
-  useEffect(() => {
-    if (isUserAuthenticated) {
-      navigateTo("/");
-    }
-  }, [dispatch, error, loading, isUserAuthenticated]);
+  if (isUserAuthenticated) {
+    navigateTo("/");
+  }
   return (
     <>
       <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-deepNavy-hover via-purple-500 to-deepNavy">

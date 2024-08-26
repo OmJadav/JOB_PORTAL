@@ -76,6 +76,18 @@ export const Applications = () => {
                       disabled
                       className="w-full mt-1 p-2 border border-gray-300 dark:border-gray-600 rounded-md"
                     ></textarea>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 mt-2">
+                      <span className="font-semibold">Applicant's Resume:</span>{" "}
+                      {application.jobSeekerInfo.resume?.url && (
+                        <Link
+                          to={application.jobSeekerInfo.resume.url}
+                          className="bg-blue-500 text-white py-1 px-2 rounded-md hover:bg-blue-600"
+                          target="_blank"
+                        >
+                          View Resume
+                        </Link>
+                      )}
+                    </p>
                   </p>
                   <div className="flex gap-4">
                     <button
@@ -84,15 +96,6 @@ export const Applications = () => {
                     >
                       Delete Application
                     </button>
-                    {application.jobSeekerInfo.resume?.url && (
-                      <Link
-                        to={application.jobSeekerInfo.resume.url}
-                        className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-                        target="_blank"
-                      >
-                        View Resume
-                      </Link>
-                    )}
                   </div>
                 </div>
               ))}

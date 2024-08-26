@@ -1,5 +1,5 @@
 import './App.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import { Dashboard } from './pages/Dashboard';
@@ -16,9 +16,12 @@ import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 const App = () => {
   const dispatch = useDispatch();
+  const userIdLocalStorage = localStorage.getItem('userId')
   useEffect(() => {
-    dispatch(fetchLoggedInUser())
-  }, [])
+    if (userIdLocalStorage) {
+      dispatch(fetchLoggedInUser())
+    }
+  }, [userIdLocalStorage])
 
   return (
     <>

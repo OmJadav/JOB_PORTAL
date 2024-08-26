@@ -76,7 +76,7 @@ export const UpdateProfile = () => {
     <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
       <div className="space-y-4">
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Full Name
           </label>
           <input
@@ -88,7 +88,7 @@ export const UpdateProfile = () => {
         </div>
 
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Email Address
           </label>
           <input
@@ -100,7 +100,7 @@ export const UpdateProfile = () => {
         </div>
 
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Phone Number
           </label>
           <input
@@ -112,7 +112,7 @@ export const UpdateProfile = () => {
         </div>
 
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Address
           </label>
           <input
@@ -126,7 +126,7 @@ export const UpdateProfile = () => {
         {user?.user?.role === "job seeker" && (
           <>
             <div>
-              <label className="block text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
                 My Preferred Job Niches
               </label>
               <div className="space-y-2">
@@ -167,7 +167,7 @@ export const UpdateProfile = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
                 Cover Letter
               </label>
               <textarea
@@ -178,7 +178,7 @@ export const UpdateProfile = () => {
               />
             </div>
             <div>
-              <label className="block text-gray-700 dark:text-gray-300 mb-1">
+              <label className="block text-gray-700 font-semibold  dark:text-gray-300 mb-1">
                 Upload Resume
               </label>
               <input

@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isUserAuthenticated } = useSelector((state) => state.user);
+  const { user, isUserAuthenticated } = useSelector((state) => state.user);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -27,7 +27,7 @@ export const Navbar = () => {
           >
             Jobs
           </Link>
-          {isUserAuthenticated ? (
+          {user?._id || isUserAuthenticated ? (
             <Link
               to="/dashboard"
               className="hover:text-deepNavy dark:hover:text-deepNavy"

@@ -1,98 +1,3 @@
-// import React from "react";
-// import { useSelector } from "react-redux";
-// import ConvertDate from "../common/DateConverter";
-// export const MyProfile = () => {
-//   const { user } = useSelector((state) => state.user);
-//   // console.log(user);
-
-//   return (
-//     <div className="account_components">
-//       <h3>My Profile</h3>
-//       <div>
-//         <label>Full Name</label>
-//         <input
-//           type="text"
-//           disabled
-//           value={user && user?.user?.name}
-//           onChange={(e) => e.target.value}
-//         />
-//       </div>
-//       <div>
-//         <label>Email Address</label>
-//         <input
-//           type="email"
-//           disabled
-//           value={user && user?.user?.email}
-//           onChange={(e) => e.target.value}
-//         />
-//       </div>
-//       {user && user?.user?.role === "job seeker" && (
-//         <div>
-//           <label>My Preferred Job Niches</label>
-//           <div
-//             style={{ display: "flex", flexDirection: "column", gap: "15px" }}
-//           >
-//             <input
-//               type="text"
-//               disabled
-//               value={user && user?.user?.niches.firstNiche}
-//               onChange={(e) => e.target.value}
-//             />
-//             <input
-//               type="text"
-//               disabled
-//               value={user && user?.user?.niches.secondNiche}
-//               onChange={(e) => e.target.value}
-//             />
-//             <input
-//               type="text"
-//               disabled
-//               value={user && user?.user?.niches.thirdNiche}
-//               onChange={(e) => e.target.value}
-//             />
-//           </div>
-//         </div>
-//       )}
-//       <div>
-//         <label>Phone Number</label>
-//         <input
-//           type="number"
-//           disabled
-//           value={user && user?.user?.phone}
-//           onChange={(e) => e.target.value}
-//         />
-//       </div>
-//       <div>
-//         <label>Address</label>
-//         <input
-//           type="text"
-//           disabled
-//           value={user && user?.user?.address}
-//           onChange={(e) => e.target.value}
-//         />
-//       </div>
-//       <div>
-//         <label>Role</label>
-//         <input
-//           type="text"
-//           disabled
-//           value={user && user?.user?.role}
-//           onChange={(e) => e.target.value}
-//         />
-//       </div>
-//       <div>
-//         <label>Joined On</label>
-//         <input
-//           type="text"
-//           disabled
-//           value={user && ConvertDate(user?.user?.createdAt)}
-//           onChange={(e) => e.target.value}
-//         />
-//       </div>
-//     </div>
-//   );
-// };
-
 import React from "react";
 import { useSelector } from "react-redux";
 import ConvertDate from "../common/DateConverter";
@@ -107,7 +12,7 @@ export const MyProfile = () => {
       </h3> */}
       <div className="space-y-4">
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Full Name
           </label>
           <input
@@ -118,7 +23,7 @@ export const MyProfile = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Email Address
           </label>
           <input
@@ -130,7 +35,7 @@ export const MyProfile = () => {
         </div>
         {user?.user?.role === "job seeker" && (
           <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-1">
+            <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
               My Preferred Job Niches
             </label>
             <div className="space-y-2">
@@ -149,7 +54,7 @@ export const MyProfile = () => {
           </div>
         )}
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block font-semibold text-gray-700 dark:text-gray-300 mb-1">
             Phone Number
           </label>
           <input
@@ -160,7 +65,7 @@ export const MyProfile = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Address
           </label>
           <input
@@ -171,7 +76,7 @@ export const MyProfile = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Role
           </label>
           <input
@@ -182,7 +87,7 @@ export const MyProfile = () => {
           />
         </div>
         <div>
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Joined On
           </label>
           <input

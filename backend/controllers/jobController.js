@@ -49,9 +49,7 @@ export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
 
 export const myPostedJobs = catchAsyncErrors(async (req, res, next) => {
     const myJobs = await Job.find({ postedBy: req.user._id });
-    if (!myJobs || myJobs.length < 1) {
-        return next(new ErrorHandler("You have not posted jobs!", 400))
-    }
+
     res.status(201).json({
         success: true,
         myJobs,

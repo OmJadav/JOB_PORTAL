@@ -51,6 +51,11 @@ const userSlice = createSlice({
             state.isUserAuthenticated = false;
             state.user = {};
         },
+        resetUserSlice(state, action) {
+            state.loading = false;
+            state.isUserAuthenticated = false;
+            state.user = {};
+        }
     }
 })
 
@@ -69,6 +74,7 @@ export const login = (formData) => async (dispatch) => {
         let link = `${process.env.REACT_APP_BACKEND_URL}/api/users/login`;
         const data = await sendApi(link, formData);
         dispatch(userSlice.actions.successLogin(data));
+        localStorage.setItem('userId', data.user._id)
     } catch (error) {
     }
 }
@@ -76,7 +82,8 @@ export const logout = () => async (dispatch) => {
     try {
         let link = `${process.env.REACT_APP_BACKEND_URL}/api/users/logout`;
         const data = await sendApi(link);
-        dispatch(userSlice.actions.successLogout(data));
+        dispatch(userSlice.actions.successLogout());
+        localStorage.clear()
     } catch (error) {
     }
 }

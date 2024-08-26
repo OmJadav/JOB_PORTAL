@@ -27,7 +27,7 @@ export const MyJobs = () => {
       {loading ? (
         <Spinner />
       ) : myJobs && myJobs?.myJobs?.length <= 0 ? (
-        <h1 style={{ fontSize: "1.4rem", fontWeight: "600" }}>
+        <h1 className="p-6 bg-white  rounded-lg shadow-md text-lg font-semibold text-gray-900 dark:text-gray-100">
           You have not posted any job!
         </h1>
       ) : (

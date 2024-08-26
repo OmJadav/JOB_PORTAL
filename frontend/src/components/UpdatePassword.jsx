@@ -78,7 +78,7 @@ export const UpdatePassword = () => {
       <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md max-w-md mx-auto">
         {/* New Password */}
         <div className="mb-4">
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             New Password
           </label>
           <div className="relative">
@@ -104,7 +104,7 @@ export const UpdatePassword = () => {
 
         {/* Confirm Password */}
         <div className="mb-6">
-          <label className="block text-gray-700 dark:text-gray-300 mb-1">
+          <label className="block text-gray-700 font-semibold dark:text-gray-300 mb-1">
             Confirm Password
           </label>
           <div className="relative">

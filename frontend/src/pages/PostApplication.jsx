@@ -6,6 +6,8 @@ import { FaToolbox } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { postApplication } from "../store/Slices/applicationSlice";
 import { fetchSingleJob } from "../store/Slices/jobSlice";
+import ConvertDate from "../common/DateConverter";
+import { CgDanger } from "react-icons/cg";
 
 export const PostApplication = () => {
   const { singleJob } = useSelector((state) => state.jobs);
@@ -13,6 +15,7 @@ export const PostApplication = () => {
   const { loading, message } = useSelector((state) => state.applications);
 
   const { jobId } = useParams();
+  const userIdLocalStorage = localStorage.getItem("userId");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -72,26 +75,28 @@ export const PostApplication = () => {
     <>
       <article className="p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
         <div className="mt-1 bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-sm">
-          <header className="mb-4">
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-              {singleJob?.title}
-            </h3>
-            Website :{" "}
-            {singleJob?.personalWebsite && (
-              <Link
-                to={singleJob?.personalWebsite}
-                className="text-blue-500 dark:text-blue-400"
-                target="_blank"
-              >
-                {singleJob?.personalWebsite}
-              </Link>
-            )}
-            <p className="text-gray-700 dark:text-gray-300">
-              {singleJob?.location}
-            </p>
-            <p className="text-gray-700 dark:text-gray-300">
-              Rs. {singleJob?.salary}
-            </p>
+          <header className="mb-4 flex justify-between">
+            <div>
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                {singleJob?.title}
+              </h3>
+              Website :{" "}
+              {singleJob?.personalWebsite && (
+                <Link
+                  to={singleJob?.personalWebsite}
+                  className="text-blue-500 dark:text-blue-400"
+                  target="_blank"
+                >
+                  {singleJob?.personalWebsite}
+                </Link>
+              )}
+              <p className="text-gray-700 dark:text-gray-300">
+                {singleJob?.location}
+              </p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Rs. {singleJob?.salary}
+              </p>
+            </div>
           </header>
           <hr className="my-4 border-gray-300 dark:border-gray-600" />
           <section>
@@ -118,6 +123,19 @@ export const PostApplication = () => {
                   </span>
                   <span className="text-gray-900 dark:text-gray-100">
                     {singleJob?.jobType}
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CgDanger className="text-gray-500 dark:text-gray-400" />
+
+                <div className="bg-red-300  text-red-800 text-lg font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">
+                    Application Deadline :{" "}
+                  </span>
+                  <span className="text-gray-900 dark:text-gray-100">
+                    11:59 PM {"  "}{" "}
+                    {ConvertDate(singleJob?.applicationDeadline)}
                   </span>
                 </div>
               </div>
@@ -279,7 +297,19 @@ export const PostApplication = () => {
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300">
-                  Resume
+                  {user?.user?.resume
+                    ? `Resume : You have already uploaded.Update if you want.`
+                    : "Resume"}{" "}
+                  {user?.user?.resume?.url && (
+                    <a
+                      href={user?.user?.resume.url}
+                      target="_blank"
+                      className="underline text-blue-700"
+                    >
+                      {" "}
+                      view
+                    </a>
+                  )}
                 </label>
                 <input
                   type="file"
@@ -291,15 +321,22 @@ export const PostApplication = () => {
           )}
 
           {isUserAuthenticated && user?.user?.role === "job seeker" && (
-            <div className="flex justify-end">
+            <div className="flex justify-center ">
               <button
-                className="bg-deepNavy text-white py-2 px-4 rounded-md hover:bg-deepNavy-hover disabled:bg-blue-300"
+                className="bg-deepNavy w-screen text-white py-2 px-4 rounded-md hover:bg-deepNavy-hover disabled:bg-blue-300"
                 onClick={handlePostApplication}
                 disabled={loading}
               >
-                Apply
+                Apply For Job
               </button>
             </div>
+          )}
+          {!userIdLocalStorage && (
+            <button disabled>
+              <p className="inline-block px-6 py-3 w-screen  bg-blue-400 text-white rounded-md transition">
+                Please Login for Apply
+              </p>
+            </button>
           )}
         </form>
       </article>

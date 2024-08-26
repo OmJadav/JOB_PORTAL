@@ -8,7 +8,7 @@ router.post('/post-job', authMiddleware, roleCheck('employer'), postJob)
 router.get('/getalljobs', getAllJobs)
 router.get('/mypostedjob', authMiddleware, roleCheck('employer'), myPostedJobs)
 router.delete('/delete-job/:id', authMiddleware, roleCheck('employer'), deleteJob)
-router.get('/singlejob/:id', authMiddleware, getSingleJob)
+router.get('/singlejob/:id', getSingleJob)
 
 
 export default router;

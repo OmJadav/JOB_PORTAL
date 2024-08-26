@@ -49,7 +49,7 @@ export const login = catchAsyncErrors((async (req, res, next) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
-            return next(new ErrorHandler("enter email and password!", 400))
+            return next(new ErrorHandler("Invalid email or password!", 400))
         }
         const user = await User.findOne({ email }).select('+password')
         if (!user) {
