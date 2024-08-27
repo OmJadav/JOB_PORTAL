@@ -21,7 +21,7 @@ export const HeroHome = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <a
-              href="/explore-jobs"
+              href="/jobs"
               className="px-6 py-3 text-lg font-medium text-white bg-deepNavy hover:bg-deepNavy-hover rounded-md dark:bg-deepNavy dark:hover:bg-deepNavy-hover"
             >
               Explore Jobs

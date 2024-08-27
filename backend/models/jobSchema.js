@@ -51,10 +51,6 @@ const jobSchema = new mongoose.Schema({
         default: "No",
         enum: ["Yes", "No"],
     },
-    jobOpenings: {
-        type: Number,
-        default: 1,
-    },
     personalWebsite: {
         type: String,
         required: true, trim: true,
@@ -80,11 +76,7 @@ const jobSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
-    status: {
-        type: String,
-        enum: ["Open", "Closed", "On Hold"],
-        default: "Open",
-    },
+
 },
     { timestamps: true }
 );

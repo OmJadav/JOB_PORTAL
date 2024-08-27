@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FaAddressBook, FaPencilAlt, FaRegUser } from "react-icons/fa";
@@ -92,7 +91,7 @@ export const Register = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="inputTag">
                   <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
-                    Register As
+                    Register As<span className="text-red-600"> *</span>
                   </label>
                   <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
                     <select
@@ -111,7 +110,7 @@ export const Register = () => {
                 </div>
                 <div className="inputTag">
                   <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
-                    Name
+                    Name<span className="text-red-600"> *</span>
                   </label>
                   <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
                     <input
@@ -128,7 +127,7 @@ export const Register = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="inputTag">
                   <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
-                    Email Address
+                    Email Address<span className="text-red-600"> *</span>
                   </label>
                   <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
                     <input
@@ -143,7 +142,7 @@ export const Register = () => {
                 </div>
                 <div className="inputTag">
                   <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
-                    Phone Number
+                    Phone Number<span className="text-red-600"> *</span>
                   </label>
                   <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
                     <input
@@ -175,7 +174,7 @@ export const Register = () => {
                 </div>
                 <div className="inputTag">
                   <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
-                    Password
+                    Password<span className="text-red-600"> *</span>
                   </label>
                   <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
                     <input
@@ -194,7 +193,7 @@ export const Register = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="inputTag">
                       <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
-                        Your First Niche
+                        Your First Niche<span className="text-red-600"> *</span>
                       </label>
                       <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
                         <select
@@ -215,6 +214,7 @@ export const Register = () => {
                     <div className="inputTag">
                       <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
                         Your Second Niche
+                        <span className="text-red-600"> *</span>
                       </label>
                       <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
                         <select
@@ -234,7 +234,7 @@ export const Register = () => {
                     </div>
                     <div className="inputTag">
                       <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
-                        Your Third Niche
+                        Your Third Niche<span className="text-red-600"> *</span>
                       </label>
                       <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-full overflow-hidden focus-within:ring-2 focus-within:ring-indigo-400">
                         <select

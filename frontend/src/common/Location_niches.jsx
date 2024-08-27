@@ -1,5 +1,13 @@
 export const locations = () => {
-  return ["Chennai", "Bengaluru", "Mumbai"];
+  return [
+    "Bengaluru",
+    "Hyderabad",
+    "Pune",
+    "Chennai",
+    "Mumbai",
+    "Gurugram",
+    "Ahmedabad",
+  ];
 };
 
 export const nichesArray = () => {

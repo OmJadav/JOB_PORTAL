@@ -8,6 +8,7 @@ import { login } from "../store/Slices/userSlice";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const userIdLocalStorage = localStorage.getItem("userId");
 
   const { user, loading, isUserAuthenticated } = useSelector(
     (state) => state.user
@@ -23,7 +24,7 @@ export const Login = () => {
     formData.append("password", password);
     dispatch(login(formData));
   };
-  if (isUserAuthenticated) {
+  if (userIdLocalStorage) {
     navigateTo("/");
   }
   return (

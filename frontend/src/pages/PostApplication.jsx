@@ -6,6 +6,7 @@ import { FaToolbox } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { postApplication } from "../store/Slices/applicationSlice";
 import { fetchSingleJob } from "../store/Slices/jobSlice";
+import { MdOutlineMail } from "react-icons/md";
 import ConvertDate from "../common/DateConverter";
 import { CgDanger } from "react-icons/cg";
 
@@ -123,6 +124,18 @@ export const PostApplication = () => {
                   </span>
                   <span className="text-gray-900 dark:text-gray-100">
                     {singleJob?.jobType}
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MdOutlineMail className="text-gray-500 dark:text-gray-400" />
+
+                <div>
+                  <span className="font-semibold text-gray-700 dark:text-gray-300">
+                    Contact Email :{" "}
+                  </span>
+                  <span className="text-blue-500 dark:text-gray-100">
+                    {singleJob?.contactEmail}
                   </span>
                 </div>
               </div>

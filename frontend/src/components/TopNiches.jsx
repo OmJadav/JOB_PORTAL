@@ -57,7 +57,7 @@ export const TopNiches = () => {
                 <h4 className="text-xl font-semibold mb-4 text-deepNavy dark:text-deepNavy">
                   {element.service}
                 </h4>
-                <p className="text-gray-700 dark:text-gray-300">
+                <p className="text-gray-700 dark:text-gray-400">
                   {element.description}
                 </p>
               </div>

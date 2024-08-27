@@ -9,11 +9,12 @@ import {
   locations as cities,
   nichesArray as nichesArrays,
 } from "../common/Location_niches";
-
 export const Jobs = () => {
   const [location, setLocation] = useState("");
   const [niche, setNiche] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [inputValue, setInputValue] = useState("");
+
   const locations = cities();
   const nichesArray = nichesArrays();
   const { jobs, loading } = useSelector((state) => state.jobs);
@@ -25,6 +26,7 @@ export const Jobs = () => {
   }, [dispatch, location, niche, searchKeyword]);
 
   const handleSearch = () => {
+    setSearchKeyword(inputValue);
     dispatch(fetchJobs(location, niche, searchKeyword));
   };
 
@@ -40,8 +42,8 @@ export const Jobs = () => {
                 <input
                   type="text"
                   placeholder="Search for jobs..."
-                  value={searchKeyword}
-                  onChange={(e) => setSearchKeyword(e.target.value)}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600"
                 />
                 <button
@@ -78,7 +80,11 @@ export const Jobs = () => {
                 </select>
               </div>
             </div>
-
+            {jobs?.length <= 0 && (
+              <h1 className="p-6 bg-white text-center  rounded-lg shadow-md text-lg font-semibold text-gray-900 dark:text-gray-100">
+                No Jobs Found.
+              </h1>
+            )}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {jobs.map((job) => (
                 <>

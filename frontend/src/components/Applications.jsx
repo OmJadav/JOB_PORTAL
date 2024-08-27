@@ -42,10 +42,25 @@ export const Applications = () => {
                   className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-sm"
                   key={application._id}
                 >
+                  <div className="bg-red-200 rounded-lg px-2 ">
+                    {application.deletedBy.jobSeeker && (
+                      <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                        <span className="font-semibold">Deleted By :</span>{" "}
+                        Applicant
+                      </p>
+                    )}
+                  </div>
                   <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
                     <span className="font-semibold">Application Number :</span>{" "}
                     {index + 1}
                   </p>
+                  {application.deletedBy === "jobSeeker" && (
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                      <span className="font-semibold">Deleted By :</span>{" "}
+                      Applicant
+                    </p>
+                  )}
+
                   <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
                     <span className="font-semibold">Job Title:</span>{" "}
                     {application.jobInfo.jobTitle}
@@ -66,6 +81,7 @@ export const Applications = () => {
                     <span className="font-semibold">Applicant's Address:</span>{" "}
                     {application.jobSeekerInfo.address}
                   </p>
+
                   <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                     <span className="font-semibold">
                       Applicant's Cover Letter:

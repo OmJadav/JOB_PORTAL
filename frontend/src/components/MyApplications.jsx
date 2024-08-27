@@ -48,35 +48,19 @@ export const MyApplications = () => {
                   key={element._id}
                 >
                   <div className="mb-4">
+                    <div className="bg-red-200 rounded-lg px-2 ">
+                      {element.deletedBy.employer && (
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                          <span className="font-semibold">Deleted By :</span>{" "}
+                          Company
+                        </p>
+                      )}
+                    </div>
                     <p className="text-gray-700 dark:text-gray-300 mb-2">
                       <span className="font-semibold">Job Title:</span>{" "}
                       {element.jobInfo.jobTitle}
                     </p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-2">
-                      <span className="font-semibold">
-                        Application Status :
-                      </span>{" "}
-                      {element?.status === "Submitted" && (
-                        <span className=" bg-blue-100 text-blue-800 text-sm py-1 px-2 rounded-md">
-                          {element.status}
-                        </span>
-                      )}
-                      {element?.status === "Reviewed" && (
-                        <span className=" bg-yellow-100 text-yellow-800 text-sm py-1 px-2 rounded-md">
-                          {element.status}
-                        </span>
-                      )}
-                      {element?.status === "Rejected" && (
-                        <span className=" bg-red-100 text-red-800 text-sm py-1 px-2 rounded-md">
-                          {element.status}
-                        </span>
-                      )}
-                      {element?.status === "Accepted" && (
-                        <span className=" bg-green-100 text-green-800 text-sm py-1 px-2 rounded-md">
-                          {element.status}
-                        </span>
-                      )}
-                    </p>
+
                     <p className="text-gray-700 dark:text-gray-300 mb-2">
                       <span className="font-semibold">Name:</span>{" "}
                       {element.jobSeekerInfo.name}

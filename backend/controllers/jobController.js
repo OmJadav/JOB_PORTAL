@@ -64,9 +64,11 @@ export const deleteJob = catchAsyncErrors(async (req, res, next) => {
     if (!job) {
         return next(new ErrorHandler("Job doesn't exist!", 400))
     }
-    if (job.postedBy !== req.user.id) {
-        return next(new ErrorHandler(`You can not delete this!`))
+
+    if (!job.postedBy.equals(req.user.id)) {
+        return next(new ErrorHandler("You cannot delete this!"));
     }
+
     await Job.deleteOne({ _id: id })
 
     res.status(201).json({
