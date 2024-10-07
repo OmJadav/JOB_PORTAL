@@ -324,6 +324,10 @@ export const PostApplication = () => {
                     </a>
                   )}
                 </label>
+                <p className="text-red-600 text-sm">
+                  **something went wrong with your saved resume please do upload
+                  resume for no errors**
+                </p>
                 <input
                   type="file"
                   onChange={resumeHandler}
@@ -346,8 +350,15 @@ export const PostApplication = () => {
           )}
           {!userIdLocalStorage && (
             <button disabled>
-              <p className="inline-block px-6 py-3 w-screen  bg-blue-400 text-white rounded-md transition">
+              <p className="inline-block px-6 py-3 w-screen  bg-red-500 text-white rounded-md transition">
                 Please Login for Apply
+              </p>
+            </button>
+          )}
+          {user.user && user?.user?.role !== "job seeker" && (
+            <button disabled>
+              <p className="inline-block px-6 py-3 w-screen  bg-red-500 text-white rounded-md transition">
+                You can not apply as a Employer
               </p>
             </button>
           )}

@@ -50,6 +50,18 @@ export const Login = () => {
                   />
                   <MdOutlineMailOutline className="text-deepNavy dark:text-deepNavy-hover mx-4" />
                 </div>
+                <div>
+                  <p className="text-sm">
+                    <span className="text-red-500">job seeker</span> :
+                    job1@gmail.com <span className="text-red-500">pass</span>
+                    :1234
+                  </p>
+                  <p className="text-sm">
+                    <span className="text-red-500">employer</span> :
+                    emp@gmail.com <span className="text-red-500">pass</span>
+                    :1234
+                  </p>
+                </div>
               </div>
               <div className="space-y-1">
                 <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
