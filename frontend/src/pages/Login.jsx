@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
 import { login } from "../store/Slices/userSlice";
+import { Button } from "flowbite-react";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,6 +17,15 @@ export const Login = () => {
 
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
+
+  const jobseekerCreds = () => {
+    setEmail("job1@gmail.com");
+    setPassword("1234");
+  };
+  const employerCreds = () => {
+    setEmail("emp@gmail.com");
+    setPassword("1234");
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -50,18 +60,6 @@ export const Login = () => {
                   />
                   <MdOutlineMailOutline className="text-deepNavy dark:text-deepNavy-hover mx-4" />
                 </div>
-                <div>
-                  <p className="text-sm">
-                    <span className="text-red-500">job seeker</span> :
-                    job1@gmail.com <span className="text-red-500">pass</span>
-                    :1234
-                  </p>
-                  <p className="text-sm">
-                    <span className="text-red-500">employer</span> :
-                    emp@gmail.com <span className="text-red-500">pass</span>
-                    :1234
-                  </p>
-                </div>
               </div>
               <div className="space-y-1">
                 <label className="block text-lg font-medium text-gray-700 dark:text-gray-300">
@@ -94,6 +92,20 @@ export const Login = () => {
                 </Link>
               </div>
             </form>
+            <div className="mt-2">
+              <button
+                onClick={jobseekerCreds}
+                class="ml-3 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline "
+              >
+                Login as Job seeker
+              </button>
+              <button
+                onClick={employerCreds}
+                class=" ml-3 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline "
+              >
+                Login as Employer
+              </button>
+            </div>
           </div>
         </div>
       </section>
